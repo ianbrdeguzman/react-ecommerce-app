@@ -1,0 +1,45 @@
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  padding: 0.4rem 1rem;
+  font-family: inherit;
+  border: 1px solid #000;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+
+.buttonsContainer {
+  display: flex;
+}
+
+.profile,
+.cart {
+  margin-left: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: #000;
+  background-color: transparent;
+}
