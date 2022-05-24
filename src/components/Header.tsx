@@ -1,5 +1,6 @@
 import React from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 import styles from './Header.module.css';
 
@@ -14,11 +15,13 @@ export function Header() {
   return (
     <header className={styles.container}>
       <div className={styles.content}>
-        <img
-          src="src/assets/Amazon_logo.svg"
-          alt="E-Commerce App Logo"
-          className={styles.logo}
-        />
+        <Link to="/">
+          <img
+            src="src/assets/Amazon_logo.svg"
+            alt="E-Commerce App Logo"
+            className={styles.logo}
+          />
+        </Link>
         <form className={styles.form} onSubmit={handleOnSubmit}>
           <input
             type="text"
@@ -33,22 +36,22 @@ export function Header() {
         </form>
       </div>
       <div className={styles.buttons}>
-        <button className={styles.signin} onClick={handleOnClick}>
+        <Link to="/login" className={styles.signin}>
           <p>Hello, Sign in</p>
           <p>
             <b> Accounts & Lists</b>
           </p>
-        </button>
-        <button className={styles.order} onClick={handleOnClick}>
+        </Link>
+        <Link to="/order-history" className={styles.order}>
           <p>Returns</p>
           <p>
             <b>& Orders</b>
           </p>
-        </button>
-        <button className={styles.cart} onClick={handleOnClick}>
+        </Link>
+        <Link to="/cart" className={styles.cart}>
           <AiOutlineShoppingCart size={24} />
           <span className={styles.count}>0</span>
-        </button>
+        </Link>
       </div>
     </header>
   );
