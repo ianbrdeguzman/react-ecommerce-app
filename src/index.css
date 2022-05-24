@@ -7,3 +7,8 @@
 body {
   font-family: 'Roboto Mono', monospace;
 }
+
+:root {
+  --yellow: #febd69;
+  --dark-blue: #131921;
+}
