@@ -8,9 +8,6 @@ export function Header() {
   const handleOnSubmit = (e: React.FormEvent) => {
     alert('Not yet implemented');
   };
-  const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    alert('Not yet implemented');
-  };
 
   return (
     <header className={styles.container}>
