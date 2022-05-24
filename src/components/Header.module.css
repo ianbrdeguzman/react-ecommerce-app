@@ -1,45 +1,115 @@
 .container {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--dark-blue);
+}
+
+.content {
+  width: 100%;
+  margin-bottom: 0.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
-  width: 2rem;
-  height: 2rem;
+  width: 6rem;
 }
 
-.inputContainer {
+.form {
+  width: 100%;
   position: relative;
+  margin: 0 1rem;
 }
 
 .input {
-  padding: 0.4rem 1rem;
-  font-family: inherit;
+  padding: 0.5rem;
+  width: 100%;
   border: 1px solid #000;
+  border-radius: 0.25rem;
 }
 
-.searchIcon {
+.search {
+  width: 2.5rem;
   position: absolute;
   top: 50%;
-  right: 0.5rem;
+  right: 0;
   transform: translateY(-50%);
-}
-
-.buttonsContainer {
-  display: flex;
-}
-
-.profile,
-.cart {
-  margin-left: 1rem;
+  background-color: var(--yellow);
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  color: #000;
+  border: 1px solid #000;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.buttons {
+  width: 100%;
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.signin,
+.order,
+.cart {
+  padding: 0.25rem;
+  margin: 0 0.25rem;
   background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.input:focus,
+.search:focus,
+.signin:focus,
+.order:focus,
+.cart:focus {
+  outline: 1px solid #fff;
+}
+
+.signin,
+.order {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.cart {
+  position: relative;
+}
+
+.count {
+  padding: 0.25rem 0.5rem;
+  border-radius: 50%;
+  background-color: var(--yellow);
+  position: absolute;
+  top: -0.25rem;
+  right: -0.5rem;
+}
+
+@media (min-width: 48rem) {
+  .container {
+    flex-direction: row;
+  }
+
+  .content {
+    margin-bottom: unset;
+  }
+
+  .logo {
+    width: 8rem;
+  }
+
+  .buttons {
+    width: unset;
+  }
 }
