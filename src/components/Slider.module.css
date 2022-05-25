@@ -1,4 +1,16 @@
 .container {
   height: auto;
-  margin-bottom: -10vh;
+  margin-bottom: -5vh;
+}
+
+@media (min-width: 64rem) {
+  .container {
+    margin-bottom: -20vh;
+  }
+}
+
+@media (min-width: 90rem) {
+  .container {
+    margin-bottom: -30vh;
+  }
 }

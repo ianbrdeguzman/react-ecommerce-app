@@ -1,6 +1,7 @@
 import numeral from 'numeral';
 import { Rating } from './Rating';
-import styles from './Product.module.css';
+import styles from './ProductItem.module.css';
+import { format } from '../utils/format';
 
 interface Props {
   title: string;
@@ -9,15 +10,12 @@ interface Props {
   reviews: number;
 }
 
-export function Product({ image, title, rating, reviews }: Props) {
+export function ProductItem({ image, title, rating, reviews }: Props) {
   return (
     <li className={styles.container}>
       <img src={image} alt={title} className={styles.image} />
       <p className={styles.title}>{title}</p>
-      <div className={styles.rating}>
-        <Rating rating={rating} />
-        <p className={styles.review}>{numeral(reviews).format('0,0')}</p>
-      </div>
+      <Rating rating={rating} reviews={format(reviews)} />
     </li>
   );
 }

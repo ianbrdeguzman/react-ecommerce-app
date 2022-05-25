@@ -1,6 +1,6 @@
-import styles from './Cart.module.css';
+import styles from './CartPage.module.css';
 
-export default function Cart() {
+export default function CartPage() {
   return (
     <div className={styles.container}>
       <h1>Cart Page</h1>

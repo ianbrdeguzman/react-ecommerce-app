@@ -1,3 +1,12 @@
+:root {
+  --yellow: #febd69;
+  --dark-blue: #131921;
+  --gray: #eaeded;
+  --blue: #0087b8;
+  --red: #b12704;
+  --green: #067d62;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +17,8 @@ body {
   font-family: 'Roboto', monospace;
 }
 
-:root {
-  --yellow: #febd69;
-  --dark-blue: #131921;
-  --gray: #eaeded;
+a,
+a:active {
+  text-decoration: none;
+  color: #000;
 }

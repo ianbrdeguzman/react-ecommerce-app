@@ -1,6 +1,6 @@
-import styles from './Register.module.css';
+import styles from './RegisterPage.module.css';
 
-export default function Register() {
+export default function RegisterPage() {
   return (
     <div className={styles.container}>
       <h1>Register Page</h1>
