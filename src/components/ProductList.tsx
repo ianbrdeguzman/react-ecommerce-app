@@ -1,6 +1,5 @@
+import { Product } from './Product';
 import styles from './ProductList.module.css';
-import numeral from 'numeral';
-import { Rating } from './Rating';
 
 const products = [
   {
@@ -58,15 +57,8 @@ const products = [
 export function ProductList() {
   return (
     <ul className={styles.container}>
-      {products.map(({ title, image, reviews, rating }) => (
-        <li className={styles.item}>
-          <img src={image} alt={title} className={styles.image} />
-          <p className={styles.title}>{title}</p>
-          <div className={styles.rating}>
-            <Rating rating={rating} />
-            <p className={styles.review}>{numeral(reviews).format('0,0')}</p>
-          </div>
-        </li>
+      {products.map((product) => (
+        <Product key={product.title} {...product} />
       ))}
     </ul>
   );

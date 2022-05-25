@@ -9,34 +9,6 @@
   font-size: 0.75rem;
 }
 
-.item {
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #fff;
-  border-radius: 0.25rem;
-  box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
-}
-
-.title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.image {
-  width: 100%;
-}
-
-.rating {
-  display: flex;
-  align-items: center;
-}
-
-.review {
-  margin-left: 0.5rem;
-}
-
 @media (min-width: 48rem) {
   .container {
     grid-template-columns: repeat(3, 1fr);
