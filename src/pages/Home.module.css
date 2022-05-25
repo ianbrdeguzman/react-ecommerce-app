@@ -1,12 +1,10 @@
 .container {
-  height: calc(100vh - 6.875rem);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  min-height: calc(100vh - 6.875rem);
+  background-color: var(--gray);
 }
 
 @media (min-width: 48rem) {
   .container {
-    height: calc(100vh - 4.661rem);
+    min-height: calc(100vh - 4.661rem);
   }
 }
