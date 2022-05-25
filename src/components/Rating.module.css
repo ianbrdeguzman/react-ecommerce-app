@@ -1,5 +1,13 @@
 .container {
   display: flex;
-  align-items: center;
+}
+
+.star {
   color: var(--yellow);
+}
+
+.reviews {
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+  color: var(--blue);
 }
