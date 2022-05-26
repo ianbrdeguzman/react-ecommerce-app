@@ -6,6 +6,7 @@ import styles from './Header.module.css';
 
 export function Header() {
   const handleOnSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     alert('Not yet implemented');
   };
 
@@ -14,7 +15,7 @@ export function Header() {
       <div className={styles.content}>
         <Link to="/">
           <img
-            src="src/assets/Amazon_logo.svg"
+            src="../src/assets/Amazon_logo.svg"
             alt="E-Commerce App Logo"
             className={styles.logo}
           />

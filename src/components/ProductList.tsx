@@ -14,8 +14,8 @@ export function ProductList() {
   return (
     <ul className={styles.container}>
       {products.map((product) => (
-        <Link to={`/product/${product._id}`}>
-          <ProductItem key={product._id} {...product} />
+        <Link key={product._id} to={`/product/${product._id}`}>
+          <ProductItem {...product} />
         </Link>
       ))}
     </ul>

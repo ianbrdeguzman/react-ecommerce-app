@@ -1,0 +1,44 @@
+.container {
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 0.25rem;
+}
+
+.delivery {
+  font-weight: 600;
+}
+
+.delivery span {
+  color: var(--blue);
+}
+
+.stock {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  color: var(--green);
+}
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select {
+  padding: 0.25rem;
+}
+
+.button {
+  border: none;
+  width: 100%;
+  margin: 1rem 0 0;
+  padding: 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  background-color: var(--yellow);
+  cursor: pointer;
+}
+
+.button:disabled {
+  background-color: lightgray;
+}

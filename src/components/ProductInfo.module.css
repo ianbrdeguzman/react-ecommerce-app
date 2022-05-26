@@ -1,0 +1,23 @@
+.container {
+  margin: 1rem 0;
+}
+
+.image {
+  width: 100%;
+}
+
+.title {
+  font-weight: 500;
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: var(--red);
+}
+
+.description {
+  margin: 0.5rem 0;
+}
