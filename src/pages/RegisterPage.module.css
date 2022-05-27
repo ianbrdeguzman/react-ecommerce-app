@@ -1,6 +1,74 @@
 .container {
   height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
+  padding: 2rem 1rem;
+}
+
+.logo {
+  width: 6.25rem;
+}
+
+.content {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--darkgray);
+  border-radius: 0.25rem;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.label {
+  display: block;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.input {
+  margin-top: 0.125rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.125rem;
+  font-family: inherit;
+}
+
+.condition {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.condition span {
+  color: var(--darkblue);
+}
+
+.button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.25rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  border: 1px solid #000;
+  border-radius: 0.125rem;
+  background-color: var(--yellow);
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+  display: flex;
+}
+
+.link {
+  margin-left: 0.5rem;
+  color: var(--darkblue);
 }
