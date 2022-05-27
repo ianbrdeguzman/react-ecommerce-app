@@ -1,7 +1,9 @@
 :root {
   --yellow: #febd69;
   --dark-blue: #131921;
+  --lightgray: #f3f4f6;
   --gray: #eaeded;
+  --darkgray: #9ca38f;
   --blue: #0087b8;
   --red: #b12704;
   --green: #067d62;
@@ -14,7 +16,10 @@
 }
 
 body {
-  font-family: 'Roboto', monospace;
+  /* font-family: 'Roboto', monospace; */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 a,
