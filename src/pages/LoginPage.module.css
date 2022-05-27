@@ -33,6 +33,7 @@
 }
 
 .input {
+  margin-top: 0.125rem;
   padding: 0.25rem 0.5rem;
   border: 1px solid #000;
   border-radius: 0.125rem;
@@ -49,6 +50,7 @@
   border: 1px solid #000;
   border-radius: 0.125rem;
   background-color: var(--yellow);
+  cursor: pointer;
 }
 
 .footer {
