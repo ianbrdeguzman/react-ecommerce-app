@@ -1,0 +1,42 @@
+.container {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 21.25rem;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.text {
+  margin: 1rem 0;
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+
+.button {
+  width: 100%;
+  padding: 0.25rem;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--lightyellow);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+  .container {
+    width: 100%;
+    display: flex;
+  }
+
+  .imageContainer {
+    width: 50%;
+    margin-right: 1rem;
+  }
+}
