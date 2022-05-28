@@ -1,0 +1,76 @@
+.container {
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray);
+}
+
+.orderSection,
+.itemSection {
+  padding: 1rem;
+  background-color: var(--lightgray);
+}
+
+.orderInfo {
+  margin-bottom: 1rem;
+}
+
+.orderInfo:last-child {
+  margin-bottom: unset;
+}
+
+.orderInfoTitle {
+  color: var(--darkgray);
+}
+
+.itemSection {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.itemImage {
+  width: 100%;
+  max-width: 2.5rem;
+}
+
+.itemInfo {
+  flex: 1;
+  margin-left: 0.5rem;
+}
+
+.itemInfoName {
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+
+.itemInfoButton {
+  font-size: inherit;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  background-color: var(--darkyellow);
+  cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+  .itemImage {
+    max-width: 5.625rem;
+  }
+
+  .orderSection {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .orderSection > .orderInfo:nth-child(3) {
+    flex: 1;
+  }
+
+  .orderInfo {
+    margin-right: 1rem;
+  }
+
+  .orderInfo:last-child {
+    margin-right: unset;
+  }
+}

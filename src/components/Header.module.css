@@ -93,7 +93,7 @@
 .count {
   padding: 0.25rem 0.5rem;
   border-radius: 50%;
-  background-color: var(--yellow);
+  background-color: var(--darkyellow);
   position: absolute;
   top: -0.25rem;
   right: -0.5rem;
