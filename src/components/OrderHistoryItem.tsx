@@ -21,15 +21,15 @@ export function OrderHistoryItem() {
           <p>mobile number</p>
         </div>
         <div className={styles.orderInfo}>
-          <div>
+          <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>ORDER ID</p>
             <p>60abf846fdb24a00156e2f15</p>
           </div>
-          <div>
+          <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>PAID</p>
             <p>May 24, 2021</p>
           </div>
-          <div>
+          <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>DELIVERED</p>
             <p>No</p>
           </div>

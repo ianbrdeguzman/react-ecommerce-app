@@ -30,7 +30,7 @@
 
 .itemImage {
   width: 100%;
-  max-width: 5.625rem;
+  max-width: 2.5rem;
 }
 
 .itemInfo {
@@ -44,13 +44,19 @@
 }
 
 .itemInfoButton {
+  font-size: inherit;
   padding: 0.25rem 0.5rem;
   border: 1px solid #000;
   border-radius: 0.25rem;
-  background-color: var(--yellow);
+  background-color: var(--darkyellow);
+  cursor: pointer;
 }
 
 @media (min-width: 48rem) {
+  .itemImage {
+    max-width: 5.625rem;
+  }
+
   .orderSection {
     display: flex;
     justify-content: space-between;
