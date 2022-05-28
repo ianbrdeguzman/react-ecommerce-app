@@ -1,8 +1,6 @@
 .container {
-  height: calc(100vh - 6.875rem);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
+  min-height: calc(100vh - 6.875rem);
 }
 
 @media (min-width: 48rem) {

@@ -6,7 +6,7 @@ export default function RegisterPage() {
     <div className={styles.container}>
       <Link to="/">
         <img
-          src="./src/assets/Amazon_logo.png"
+          src="./src/assets/amazon-logo.png"
           alt="E-Commerce Logo"
           className={styles.logo}
         />

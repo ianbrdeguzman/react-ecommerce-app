@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.textContainer {
+  margin-left: 1rem;
+  line-height: 1.5rem;
+}
+
+.text span {
+  font-weight: bold;
+  color: var(--blue);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    padding: 1rem;
+  }
+}
