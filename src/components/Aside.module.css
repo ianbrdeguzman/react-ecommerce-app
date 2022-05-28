@@ -42,3 +42,10 @@
 .button:disabled {
   background-color: lightgray;
 }
+
+@media (min-width: 48rem) {
+  .container {
+    min-width: 16rem;
+    max-width: 16rem;
+  }
+}
