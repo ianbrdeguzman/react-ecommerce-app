@@ -1,7 +1,51 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Alert } from '../components/Alert';
+import { authSlice } from '../redux/features/authSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { useSignInMutation } from '../redux/services/user';
 import styles from './LoginPage.module.css';
 
+interface Inputs {
+  email: string;
+  password: string;
+}
+
+interface Error {
+  data: { message: string };
+  status: number;
+}
+
 export default function LoginPage() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState<Inputs>({ email: '', password: '' });
+  const [signIn, { isLoading }] = useSignInMutation();
+  const [error, setError] = useState<Error>();
+
+  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setInputs({
+      ...inputs,
+      [e.currentTarget.id]: e.currentTarget.value
+    });
+  };
+
+  const handleOnSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const data = await signIn({
+        email: inputs.email,
+        password: inputs.password
+      }).unwrap();
+      dispatch(authSlice.actions.setCredentials(data));
+      navigate('/');
+    } catch (err) {
+      setError(err as unknown as Error);
+    } finally {
+      setInputs({ email: '', password: '' });
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Link to="/">
@@ -11,9 +55,16 @@ export default function LoginPage() {
           className={styles.logo}
         />
       </Link>
+      {error && (
+        <Alert
+          type="error"
+          title="There was a problem"
+          text={error.data.message}
+        />
+      )}
       <div className={styles.content}>
         <h1 className={styles.title}>Sign In</h1>
-        <form>
+        <form onSubmit={handleOnSubmit}>
           <label htmlFor="email" className={styles.label}>
             E-mail Address
             <input
@@ -21,6 +72,8 @@ export default function LoginPage() {
               name="email"
               id="email"
               className={styles.input}
+              onChange={handleOnChange}
+              value={inputs.email}
             />
           </label>
           <label htmlFor="password" className={styles.label}>
@@ -30,17 +83,21 @@ export default function LoginPage() {
               name="password"
               id="password"
               className={styles.input}
+              onChange={handleOnChange}
+              value={inputs.password}
             />
           </label>
-          <button type="submit" className={styles.button}>
-            Continue
+          <button disabled={isLoading} type="submit" className={styles.button}>
+            {isLoading ? 'Loading...' : 'Continue'}
           </button>
         </form>
       </div>
       <div className={styles.footer}>
         <p>New to Amazon?</p>
         <Link to="/register">
-          <button className={styles.link}>Create your Amazon account</button>
+          <button disabled={isLoading} className={styles.link}>
+            Create your Amazon account
+          </button>
         </Link>
       </div>
     </div>
