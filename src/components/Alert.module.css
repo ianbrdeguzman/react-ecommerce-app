@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--red);
+}
+
+.text {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.error {
+  border: 1px solid var(--red);
+}
+
+.warning {
+  border: 1px solid var(--darkyellow);
+}
+
+.success {
+  border: 1px solid var(--green);
+}
