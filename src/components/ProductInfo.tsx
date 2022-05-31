@@ -1,7 +1,7 @@
-import type { Product } from '../data';
 import { format } from '../utils/format';
 import { Aside } from './Aside';
 import { Rating } from './Rating';
+import { Product } from '../redux/types';
 
 import styles from './ProductInfo.module.css';
 
@@ -13,7 +13,7 @@ export function ProductInfo({ product }: Props) {
   return (
     <div className={styles.container}>
       <img src={product.image} alt={product.title} className={styles.image} />
-      <div>
+      <div className={styles.content}>
         <h1 className={styles.title}>{product.title}</h1>
         <Rating rating={product.rating} reviews={format(product.reviews)} />
         <p className={styles.price}>${product.price}</p>

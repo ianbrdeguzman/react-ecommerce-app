@@ -4,6 +4,12 @@
   border-radius: 0.25rem;
 }
 
+.price {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: var(--red);
+}
+
 .delivery {
   font-weight: 600;
 }
