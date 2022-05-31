@@ -12,7 +12,7 @@ export function ProductList() {
   ) : (
     <ul className={styles.container}>
       {data?.map((product) => (
-        <ProductItem {...product} />
+        <ProductItem key={product._id} {...product} />
       ))}
     </ul>
   );

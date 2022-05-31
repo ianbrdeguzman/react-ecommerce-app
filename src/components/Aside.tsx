@@ -1,4 +1,4 @@
-import type { Product } from '../data';
+import { Product } from '../redux/types';
 import styles from './Aside.module.css';
 
 interface Props {
@@ -15,9 +15,9 @@ export function Aside({ product }: Props) {
       <p className={styles.stock}>In Stock</p>
       <div className={styles.quantity}>
         <p>Qty:</p>
-        {product.qty > 0 ? (
+        {product.stock > 0 ? (
           <select name="qty" id="qty" className={styles.select}>
-            {[...Array(product.qty)].map((i, index) => (
+            {[...Array(product.stock)].map((i, index) => (
               <option key={index} value={index + 1}>
                 {index + 1}
               </option>
@@ -28,7 +28,7 @@ export function Aside({ product }: Props) {
         )}
       </div>
       <button
-        disabled={product.qty === 0}
+        disabled={product.stock === 0}
         className={styles.button}
         onClick={() => console.log('add to cart')}
       >

@@ -33,4 +33,12 @@
   .image {
     max-width: 15rem;
   }
+
+  .content {
+    margin: 0 1rem;
+  }
+
+  .title {
+    margin: 0 0 0.5rem;
+  }
 }
