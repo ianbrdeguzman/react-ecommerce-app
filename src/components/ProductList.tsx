@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { ProductItem } from './ProductItem';
-import { getProducts, Product } from '../data';
+import { useGetProductsQuery } from '../redux/services/product';
 import styles from './ProductList.module.css';
 
 export function ProductList() {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { data, error, isLoading } = useGetProductsQuery();
 
-  useEffect(() => {
-    setProducts(getProducts());
-  }, []);
-
-  return (
+  return error ? (
+    <h1 className={styles.error}>Something went wrong.</h1>
+  ) : isLoading ? (
+    <h1 className={styles.loading}>Loading...</h1>
+  ) : (
     <ul className={styles.container}>
-      {products.map((product) => (
-        <Link key={product._id} to={`/product/${product._id}`}>
-          <ProductItem {...product} />
-        </Link>
+      {data?.map((product) => (
+        <ProductItem {...product} />
       ))}
     </ul>
   );
