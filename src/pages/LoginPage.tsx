@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../components/Alert';
 import { authSlice } from '../redux/features/authSlice';
-import { useAppDispatch } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useSignInMutation } from '../redux/services/user';
+import { Storage } from '../utils/storage';
 import styles from './LoginPage.module.css';
 
 interface Inputs {
@@ -19,8 +20,10 @@ interface Error {
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [inputs, setInputs] = useState<Inputs>({ email: '', password: '' });
+  const { user } = useAppSelector((state) => state.auth);
   const [signIn, { isLoading }] = useSignInMutation();
+
+  const [inputs, setInputs] = useState<Inputs>({ email: '', password: '' });
   const [error, setError] = useState<Error>();
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -37,7 +40,8 @@ export default function LoginPage() {
         email: inputs.email,
         password: inputs.password
       }).unwrap();
-      dispatch(authSlice.actions.setCredentials(data));
+      dispatch(authSlice.actions.save(data));
+      Storage.save('credentials', JSON.stringify(data));
       navigate('/');
     } catch (err) {
       setError(err as unknown as Error);
@@ -45,6 +49,10 @@ export default function LoginPage() {
       setInputs({ email: '', password: '' });
     }
   };
+
+  useEffect(() => {
+    if (user) navigate('/profile');
+  }, [user]);
 
   return (
     <div className={styles.container}>
