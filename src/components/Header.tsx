@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { authSlice } from '../redux/features/authSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { User } from '../redux/types';
+import { Storage } from '../utils/storage';
 
 import styles from './Header.module.css';
 
 export function Header() {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.auth);
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');
   };
+
+  useEffect(() => {
+    if (!user) {
+      const rawUser = Storage.load('credentials');
+      const user: User = rawUser ? JSON.parse(rawUser) : '';
+      dispatch(authSlice.actions.save(user));
+    }
+  }, [user]);
 
   return (
     <header className={styles.container}>
@@ -35,7 +49,9 @@ export function Header() {
       </div>
       <div className={styles.buttons}>
         <Link to="/login" className={styles.signin}>
-          <p>Hello, Sign in</p>
+          <p>
+            Hello, <span>{user ? user.name : 'Sign in'}</span>
+          </p>
           <p>
             <b> Accounts & Lists</b>
           </p>
