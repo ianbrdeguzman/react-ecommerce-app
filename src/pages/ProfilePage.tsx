@@ -1,13 +1,20 @@
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userSlice } from '../redux/features/userSlice';
 import { useAppSelector } from '../redux/hooks';
 import styles from './ProfilePage.module.css';
 
 export default function Profile() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useAppSelector((state) => state.userSlice);
   const handleOnSubmit = () => {
     console.log('update profile');
   };
 
   const handleOnSignOut = () => {
-    console.log('sign out');
+    dispatch(userSlice.actions.logout('user'));
+    navigate('/');
   };
   return (
     <div className={styles.container}>
@@ -16,7 +23,13 @@ export default function Profile() {
         <form onSubmit={handleOnSubmit}>
           <label htmlFor="name" className={styles.label}>
             Your Name
-            <input type="text" name="name" id="name" className={styles.input} />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className={styles.input}
+              defaultValue={user?.name}
+            />
           </label>
           <label htmlFor="email" className={styles.label}>
             E-mail Address
@@ -25,6 +38,7 @@ export default function Profile() {
               name="email"
               id="email"
               className={styles.input}
+              defaultValue={user?.email}
             />
           </label>
           <label htmlFor="password" className={styles.label}>

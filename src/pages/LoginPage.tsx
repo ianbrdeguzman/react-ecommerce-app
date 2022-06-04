@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../components/Alert';
-import { authSlice } from '../redux/features/authSlice';
+import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useSignInMutation } from '../redux/services/user';
-import { Storage } from '../utils/storage';
 import styles from './LoginPage.module.css';
 
 interface Inputs {
@@ -20,7 +19,7 @@ interface Error {
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.userSlice);
   const [signIn, { isLoading }] = useSignInMutation();
 
   const [inputs, setInputs] = useState<Inputs>({ email: '', password: '' });
@@ -40,13 +39,11 @@ export default function LoginPage() {
         email: inputs.email,
         password: inputs.password
       }).unwrap();
-      dispatch(authSlice.actions.save(data));
-      Storage.save('credentials', JSON.stringify(data));
+      dispatch(userSlice.actions.login(data));
+      setInputs({ email: '', password: '' });
       navigate('/');
     } catch (err) {
       setError(err as unknown as Error);
-    } finally {
-      setInputs({ email: '', password: '' });
     }
   };
 
