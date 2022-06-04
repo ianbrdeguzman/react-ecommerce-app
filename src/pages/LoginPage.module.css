@@ -67,3 +67,9 @@
   background-color: var(--lightgray);
   border-color: var(--darkgray);
 }
+
+.error {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--red);
+}

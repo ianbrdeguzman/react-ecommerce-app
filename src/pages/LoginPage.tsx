@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert } from '../components/Alert';
 import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { useSignInMutation } from '../redux/services/user';
+import { useSignInMutation } from '../redux/services/userApi';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
 import styles from './LoginPage.module.css';
 
 interface Inputs {
@@ -20,36 +22,27 @@ export default function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.userSlice);
-  const [signIn, { isLoading }] = useSignInMutation();
-
-  const [inputs, setInputs] = useState<Inputs>({ email: '', password: '' });
+  const [signIn, { isLoading, isSuccess }] = useSignInMutation();
   const [error, setError] = useState<Error>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors }
+  } = useForm<Inputs>();
 
-  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setInputs({
-      ...inputs,
-      [e.currentTarget.id]: e.currentTarget.value
-    });
-  };
-
-  const handleOnSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleOnSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
       const data = await signIn({
-        email: inputs.email,
-        password: inputs.password
+        email,
+        password
       }).unwrap();
       dispatch(userSlice.actions.login(data));
-      setInputs({ email: '', password: '' });
       navigate('/');
     } catch (err) {
       setError(err as unknown as Error);
     }
   };
-
-  useEffect(() => {
-    if (user) navigate('/profile');
-  }, [user]);
 
   return (
     <div className={styles.container}>
@@ -69,31 +62,47 @@ export default function LoginPage() {
       )}
       <div className={styles.content}>
         <h1 className={styles.title}>Sign In</h1>
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleSubmit(handleOnSubmit)}>
           <label htmlFor="email" className={styles.label}>
             E-mail Address
             <input
               type="email"
-              name="email"
-              id="email"
+              {...register('email', {
+                required: 'Email is required',
+                pattern: {
+                  value:
+                    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Please enter a valid email.'
+                }
+              })}
               className={styles.input}
-              onChange={handleOnChange}
-              value={inputs.email}
+              required
             />
           </label>
+          {errors.email && (
+            <span className={styles.error}>{errors.email.message}</span>
+          )}
           <label htmlFor="password" className={styles.label}>
             Password
             <input
               type="password"
-              name="password"
-              id="password"
+              {...register('password', {
+                required: 'Password is required',
+                minLength: {
+                  value: 6,
+                  message: 'Password atleast 6 characters'
+                },
+                maxLength: 30
+              })}
               className={styles.input}
-              onChange={handleOnChange}
-              value={inputs.password}
+              required
             />
           </label>
+          {errors.password && (
+            <span className={styles.error}>{errors.password.message}</span>
+          )}
           <button disabled={isLoading} type="submit" className={styles.button}>
-            {isLoading ? 'Loading...' : 'Continue'}
+            {isLoading || isSuccess ? 'Loading...' : 'Continue'}
           </button>
         </form>
       </div>
