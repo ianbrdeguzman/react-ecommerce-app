@@ -13,6 +13,18 @@ export const userApi = createApi({
           body
         };
       }
+    }),
+    update: builder.mutation<
+      User,
+      { userId: string; name: string; email: string; password: string }
+    >({
+      query: (body) => {
+        return {
+          url: '/api/user/profile',
+          method: 'POST',
+          body
+        };
+      }
     })
   })
 });

@@ -50,7 +50,7 @@ export function Header() {
         </form>
       </div>
       <div className={styles.buttons}>
-        <Link to="/login" className={styles.signin}>
+        <Link to={user ? '/profile' : '/login'} className={styles.signin}>
           <p>
             Hello, <span>{user ? user.name : 'Sign in'}</span>
           </p>
