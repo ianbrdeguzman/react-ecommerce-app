@@ -7,6 +7,10 @@ export class Storage {
     return localStorage.getItem(key);
   }
 
+  static remove(key: string) {
+    return localStorage.removeItem(key);
+  }
+
   static clear() {
     return localStorage.clear();
   }

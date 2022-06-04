@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { authSlice } from '../redux/features/authSlice';
+import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { User } from '../redux/types';
 import { Storage } from '../utils/storage';
@@ -10,7 +10,7 @@ import styles from './Header.module.css';
 
 export function Header() {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.userSlice);
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');
@@ -18,9 +18,11 @@ export function Header() {
 
   useEffect(() => {
     if (!user) {
-      const rawUser = Storage.load('credentials');
-      const user: User = rawUser ? JSON.parse(rawUser) : '';
-      dispatch(authSlice.actions.save(user));
+      const rawUser = Storage.load('user');
+      const user: User = rawUser ? JSON.parse(rawUser) : null;
+      if (user) {
+        dispatch(userSlice.actions.login(user));
+      }
     }
   }, [user]);
 
