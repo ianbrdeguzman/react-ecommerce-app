@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Alert } from '../components/Alert';
 import { userSlice } from '../redux/features/userSlice';
-import { useAppDispatch } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useSignInMutation } from '../redux/services/userApi';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -21,12 +21,12 @@ interface Error {
 export default function LoginPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [signIn, { isLoading, isSuccess }] = useSignInMutation();
-  const [error, setError] = useState<Error>();
+  const [searchParams] = useSearchParams();
+  const { user } = useAppSelector((state) => state.userSlice);
+  const [signIn, { isLoading, isSuccess, error }] = useSignInMutation();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm<Inputs>();
 
@@ -37,11 +37,20 @@ export default function LoginPage() {
         password
       }).unwrap();
       dispatch(userSlice.actions.login(data));
-      navigate('/');
-    } catch (err) {
-      setError(err as unknown as Error);
+    } catch (error) {
+      throw error;
     }
   };
+
+  useEffect(() => {
+    const path = searchParams.get('redirect');
+    if (isSuccess) {
+      navigate(path ?? '/');
+    }
+    if (!isSuccess && user) {
+      navigate('/profile');
+    }
+  }, [isSuccess, user, searchParams]);
 
   return (
     <div className={styles.container}>
@@ -56,7 +65,7 @@ export default function LoginPage() {
         <Alert
           type="error"
           title="There was a problem"
-          text={error.data.message}
+          text={(error as Error).data.message}
         />
       )}
       <div className={styles.content}>
