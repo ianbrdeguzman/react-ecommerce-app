@@ -12,7 +12,7 @@ const initialState: State = {
 
 export const userSlice = createSlice({
   name: 'userSlice',
-  initialState: initialState,
+  initialState,
   reducers: {
     login: (state, action: PayloadAction<User>) => {
       Storage.save('user', JSON.stringify(action.payload));

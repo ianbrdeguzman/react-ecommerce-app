@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
+import { cartSlice } from './features/cartSlice';
 import { userSlice } from './features/userSlice';
 import { orderApi } from './services/orderApi';
 import { productApi } from './services/productApi';
@@ -10,7 +11,8 @@ export const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
-    [userSlice.name]: userSlice.reducer
+    [userSlice.name]: userSlice.reducer,
+    [cartSlice.name]: cartSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
