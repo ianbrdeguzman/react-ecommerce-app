@@ -24,7 +24,6 @@ export default function ProfilePage() {
     register,
     handleSubmit,
     reset,
-    setValue,
     getValues,
     formState: { errors }
   } = useForm<Inputs>();
