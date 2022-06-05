@@ -1,11 +1,11 @@
 .container {
+  margin-bottom: 1rem;
   font-size: 0.75rem;
   border-radius: 0.25rem;
   border: 1px solid var(--gray);
 }
 
-.orderSection,
-.itemSection {
+.orderSection {
   padding: 1rem;
   background-color: var(--lightgray);
 }
@@ -22,10 +22,15 @@
   color: var(--darkgray);
 }
 
-.itemSection {
-  background-color: #fff;
+.item {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
+}
+
+.item:last-child {
+  margin-bottom: unset;
 }
 
 .itemImage {
@@ -35,7 +40,7 @@
 
 .itemInfo {
   flex: 1;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 
 .itemInfoName {
@@ -53,10 +58,23 @@
 }
 
 @media (min-width: 48rem) {
+  .itemSection {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item {
+    margin-bottom: unset;
+  }
+
   .itemImage {
     max-width: 5.625rem;
   }
+}
 
+@media (min-width: 48rem) {
   .orderSection {
     display: flex;
     justify-content: space-between;

@@ -1,5 +1,5 @@
 import { Rating } from './Rating';
-import { format } from '../utils/format';
+import { formatNumber } from '../utils/formatNumber';
 import styles from './ProductItem.module.css';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ export function ProductItem({ _id, image, title, rating, reviews }: Props) {
           <img src={image} alt={title} className={styles.image} />
         </div>
         <p className={styles.title}>{title}</p>
-        <Rating rating={rating} reviews={format(reviews)} />
+        <Rating rating={rating} reviews={formatNumber(reviews)} />
       </Link>
     </li>
   );

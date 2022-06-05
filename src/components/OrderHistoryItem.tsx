@@ -1,52 +1,74 @@
 import { Link } from 'react-router-dom';
-import styles from './OrderHistoryItem.module.css';
+import { Order } from '../redux/types';
+import { formatDate } from '../utils/formatDate';
 
-export function OrderHistoryItem() {
+import styles from './OrderHistoryItem.module.css';
+interface Props {
+  order: Order;
+}
+
+export function OrderHistoryItem({
+  order: {
+    _id,
+    createdAt,
+    totalPrice,
+    isPaid,
+    paidAt,
+    isDelivered,
+    deliveredAt,
+    orderItems,
+    shippingDetails: { addressOne, addressTwo, city, fullname, phone, postal }
+  }
+}: Props) {
   return (
     <article className={styles.container}>
       <section className={styles.orderSection}>
         <div className={styles.orderInfo}>
           <p className={styles.orderInfoTitle}>ORDER PLACED</p>
-          <p>May 24 2021</p>
+          <p>{formatDate(createdAt)}</p>
         </div>
         <div className={styles.orderInfo}>
           <p className={styles.orderInfoTitle}>TOTAL</p>
-          <p>$133.44</p>
+          <p>${totalPrice}</p>
         </div>
         <div className={styles.orderInfo}>
           <p className={styles.orderInfoTitle}>SHIP TO</p>
-          <p>street number</p>
-          <p>city</p>
-          <p>post code</p>
-          <p>mobile number</p>
+          <p>{fullname}</p>
+          <p>{addressOne}</p>
+          <p>{addressTwo}</p>
+          <p>{city}</p>
+          <p>{postal}</p>
+          <p>{phone}</p>
         </div>
         <div className={styles.orderInfo}>
           <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>ORDER ID</p>
-            <p>60abf846fdb24a00156e2f15</p>
+            <p>{_id}</p>
           </div>
           <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>PAID</p>
-            <p>May 24, 2021</p>
+            <p>{isPaid ? formatDate(paidAt) : 'No'}</p>
           </div>
           <div className={styles.orderInfo}>
             <p className={styles.orderInfoTitle}>DELIVERED</p>
-            <p>No</p>
+            <p>{isDelivered ? formatDate(deliveredAt) : 'No'}</p>
           </div>
         </div>
       </section>
       <section className={styles.itemSection}>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/2/24/Blue_Tshirt.jpg"
-          alt="Product"
-          className={styles.itemImage}
-        />
-        <div className={styles.itemInfo}>
-          <p className={styles.itemInfoName}>Product Name</p>
-          <Link to="/">
-            <button className={styles.itemInfoButton}>Buy it again</button>
-          </Link>
-        </div>
+        {orderItems.map(({ _id, image, title, productId }) => (
+          <article key={_id} className={styles.item}>
+            <img src={image} alt={title} className={styles.itemImage} />
+            <div className={styles.itemInfo}>
+              <Link to={`/product/${productId}`}>
+                <p className={styles.itemInfoName}>{title}</p>
+              </Link>
+              <Link to="/">
+                <button className={styles.itemInfoButton}>Buy it again</button>
+              </Link>
+            </div>
+          </article>
+        ))}
       </section>
     </article>
   );

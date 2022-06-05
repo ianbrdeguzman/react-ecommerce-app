@@ -1,5 +1,6 @@
 import { ProductItem } from './ProductItem';
-import { useGetProductsQuery } from '../redux/services/product';
+import { useGetProductsQuery } from '../redux/services/productApi';
+
 import styles from './ProductList.module.css';
 
 export function ProductList() {

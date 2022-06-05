@@ -1,10 +1,11 @@
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ProductInfo } from '../components/ProductInfo';
-import { useGetProductByIdQuery } from '../redux/services/product';
+import { useGetProductByIdQuery } from '../redux/services/productApi';
 
 import styles from './ProductPage.module.css';
 
 export default function ProductPage() {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data, error, isLoading } = useGetProductByIdQuery(id ?? '');
 
@@ -14,9 +15,9 @@ export default function ProductPage() {
     <h1>Loading...</h1>
   ) : (
     <div className={styles.container}>
-      <Link to="/">
-        <span className={styles.back}>Back</span>
-      </Link>
+      <button className={styles.back} onClick={() => navigate(-1)}>
+        Back
+      </button>
       {data && <ProductInfo product={data} />}
     </div>
   );

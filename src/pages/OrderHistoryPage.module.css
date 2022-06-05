@@ -14,6 +14,6 @@
 
 @media (min-width: 48rem) {
   .container {
-    height: calc(100vh - 4.661rem);
+    min-height: calc(100vh - 4.661rem);
   }
 }

@@ -1,4 +1,4 @@
-import { format } from '../utils/format';
+import { formatNumber } from '../utils/formatNumber';
 import { Aside } from './Aside';
 import { Rating } from './Rating';
 import { Product } from '../redux/types';
@@ -15,7 +15,10 @@ export function ProductInfo({ product }: Props) {
       <img src={product.image} alt={product.title} className={styles.image} />
       <div className={styles.content}>
         <h1 className={styles.title}>{product.title}</h1>
-        <Rating rating={product.rating} reviews={format(product.reviews)} />
+        <Rating
+          rating={product.rating}
+          reviews={formatNumber(product.reviews)}
+        />
         <p className={styles.price}>${product.price}</p>
         <p className={styles.description}>{product.description}</p>
         <p className={styles.description}>
