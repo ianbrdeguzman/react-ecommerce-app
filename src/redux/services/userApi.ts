@@ -16,12 +16,21 @@ export const userApi = createApi({
     }),
     update: builder.mutation<
       User,
-      { userId: string; name: string; email: string; password: string }
+      {
+        userId: string;
+        name: string;
+        email: string;
+        password: string;
+        token: string;
+      }
     >({
       query: (body) => {
         return {
           url: '/api/user/profile',
-          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${body.token}`
+          },
+          method: 'PUT',
           body
         };
       }
@@ -29,4 +38,4 @@ export const userApi = createApi({
   })
 });
 
-export const { useSignInMutation } = userApi;
+export const { useSignInMutation, useUpdateMutation } = userApi;

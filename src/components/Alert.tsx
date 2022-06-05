@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useCallback } from 'react';
+
 import styles from './Alert.module.css';
 
 interface Props {
