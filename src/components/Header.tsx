@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { cartSlice, ProductWithQty } from '../redux/features/cartSlice';
 import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { User } from '../redux/types';
@@ -11,6 +12,7 @@ import styles from './Header.module.css';
 export function Header() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.userSlice);
+  const { cartItems } = useAppSelector((state) => state.cartSlice);
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');
@@ -24,7 +26,16 @@ export function Header() {
         dispatch(userSlice.actions.login(user));
       }
     }
-  }, [user]);
+    if (cartItems.length === 0) {
+      const rawCartItems = Storage.load('cartItems');
+      const cartItems: ProductWithQty[] = rawCartItems
+        ? JSON.parse(rawCartItems)
+        : null;
+      if (cartItems) {
+        dispatch(cartSlice.actions.load(cartItems));
+      }
+    }
+  }, [user, cartItems]);
 
   return (
     <header className={styles.container}>
@@ -66,7 +77,7 @@ export function Header() {
         </Link>
         <Link to="/cart" className={styles.cart}>
           <AiOutlineShoppingCart size={24} />
-          <span className={styles.count}>0</span>
+          <span className={styles.count}>{cartItems.length}</span>
         </Link>
       </div>
     </header>
