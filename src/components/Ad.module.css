@@ -1,6 +1,9 @@
 .container {
+  padding: 1rem;
   display: flex;
   align-items: flex-start;
+  background-color: #fff;
+  margin-bottom: 1rem;
 }
 
 .textContainer {
@@ -15,6 +18,8 @@
 
 @media (min-width: 48rem) {
   .container {
+    max-width: 90vw;
     padding: 1rem;
+    margin: 0 auto 1rem auto;
   }
 }

@@ -161,12 +161,12 @@ export default function RegisterPage() {
           <span>Conditions of Use</span> and <span>Privacy Notice.</span>
         </p>
       </div>
-      <div className={styles.footer}>
+      <footer className={styles.footer}>
         <p>Already have an account?</p>
         <Link to="/login">
           <p className={styles.link}>Sign In</p>
         </Link>
-      </div>
+      </footer>
     </div>
   );
 }
