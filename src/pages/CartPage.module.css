@@ -1,10 +1,11 @@
 .container {
   padding: 1rem;
   min-height: calc(100vh - 6.875rem);
+  background-color: var(--lightgray);
 }
 
 @media (min-width: 48rem) {
   .container {
-    height: calc(100vh - 4.661rem);
+    min-height: calc(100vh - 4.661rem);
   }
 }
