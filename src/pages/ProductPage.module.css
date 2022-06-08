@@ -11,3 +11,9 @@
   background-color: var(--yellow);
   cursor: pointer;
 }
+
+.error,
+.loading {
+  margin-top: 4rem;
+  text-align: center;
+}

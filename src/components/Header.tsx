@@ -15,6 +15,7 @@ export function Header() {
   const { cartItems, cartItemsLength } = useAppSelector(
     (state) => state.cartSlice
   );
+
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');

@@ -1,18 +1,16 @@
 import { ProductItem } from './ProductItem';
-import { useGetProductsQuery } from '../redux/services/productApi';
+import { Product } from '../redux/types';
 
 import styles from './ProductList.module.css';
 
-export function ProductList() {
-  const { data, error, isLoading } = useGetProductsQuery();
+interface Props {
+  products: Product[];
+}
 
-  return error ? (
-    <h1 className={styles.error}>Something went wrong.</h1>
-  ) : isLoading ? (
-    <h1 className={styles.loading}>Loading...</h1>
-  ) : (
+export function ProductList({ products }: Props) {
+  return (
     <ul className={styles.container}>
-      {data?.map((product) => (
+      {products.map((product) => (
         <ProductItem key={product._id} {...product} />
       ))}
     </ul>
