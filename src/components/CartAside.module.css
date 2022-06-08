@@ -1,0 +1,29 @@
+.container {
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.text {
+  font-size: 1.125rem;
+  line-height: 28px;
+}
+
+.button {
+  width: 100%;
+  margin: 1rem 0 0;
+  padding: 0.25rem;
+  font-size: 1.125rem;
+  font-family: inherit;
+  background-color: var(--lightyellow);
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+  .aside {
+    width: 16.75rem;
+    position: sticky;
+    top: 1rem;
+  }
+}

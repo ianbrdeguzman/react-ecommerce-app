@@ -1,7 +1,7 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { cartSlice, ProductWithQty } from '../redux/features/cartSlice';
+import { cartSlice } from '../redux/features/cartSlice';
 import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { User } from '../redux/types';
@@ -12,7 +12,9 @@ import styles from './Header.module.css';
 export function Header() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.userSlice);
-  const { cartItems } = useAppSelector((state) => state.cartSlice);
+  const { cartItems, cartItemsLength } = useAppSelector(
+    (state) => state.cartSlice
+  );
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');
@@ -26,20 +28,8 @@ export function Header() {
         dispatch(userSlice.actions.login(user));
       }
     }
-    if (cartItems.length === 0) {
-      const rawCartItems = Storage.load('cartItems');
-      const cartItems: ProductWithQty[] = JSON.parse(rawCartItems ?? '');
-      if (cartItems.length > 0) {
-        dispatch(cartSlice.actions.load(cartItems));
-      }
-    }
+    dispatch(cartSlice.actions.load([]));
   }, [user, cartItems]);
-
-  const numOfCartItems = useMemo(() => {
-    return cartItems.reduce((prev, curr) => {
-      return prev + curr.qty;
-    }, 0);
-  }, [cartItems]);
 
   return (
     <header className={styles.container}>
@@ -81,7 +71,7 @@ export function Header() {
         </Link>
         <Link to="/cart" className={styles.cart}>
           <AiOutlineShoppingCart size={24} />
-          <span className={styles.count}>{numOfCartItems}</span>
+          <span className={styles.count}>{cartItemsLength}</span>
         </Link>
       </div>
     </header>

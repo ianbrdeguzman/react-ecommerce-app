@@ -1,0 +1,60 @@
+.container {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0 0 0/10%);
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  max-width: 11.25rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.name {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.stock {
+  color: var(--green);
+}
+
+.selectContainer {
+  margin: 1rem 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectLabel {
+  font-size: 1rem;
+  padding: 0.25rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+}
+
+.selectLabel:focus-within {
+  border: 2px solid var(--blue);
+}
+
+.select {
+  border: none;
+  font-size: 1rem;
+  outline: none;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--blue);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
