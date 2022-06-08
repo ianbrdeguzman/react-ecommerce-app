@@ -6,9 +6,10 @@ import styles from './CartList.module.css';
 
 interface Props {
   cartItems: ProductWithQty[];
+  cartItemPrice: number;
 }
 
-export function CartList({ cartItems }: Props) {
+export function CartList({ cartItems, cartItemPrice }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -22,7 +23,7 @@ export function CartList({ cartItems }: Props) {
           ))}
         </ul>
       </div>
-      <CartAside />
+      <CartAside totalPrice={cartItemPrice} />
     </div>
   );
 }

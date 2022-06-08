@@ -3,6 +3,12 @@
   background-color: var(--gray);
 }
 
+.error,
+.loading {
+  text-align: center;
+  margin-top: 4rem;
+}
+
 @media (min-width: 48rem) {
   .container {
     min-height: calc(100vh - 4.661rem);

@@ -11,9 +11,9 @@ export default function ProductPage() {
   const { data, error, isLoading } = useGetProductByIdQuery(id ?? skipToken);
 
   return error ? (
-    <h1>Something went wrong.</h1>
+    <h1 className={styles.error}>Something went wrong.</h1>
   ) : isLoading ? (
-    <h1>Loading...</h1>
+    <h1 className={styles.loading}>Loading...</h1>
   ) : (
     <div className={styles.container}>
       <button className={styles.back} onClick={() => navigate(-1)}>

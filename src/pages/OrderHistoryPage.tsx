@@ -10,7 +10,7 @@ import styles from './OrderHistoryPage.module.css';
 export default function OrderHistoryPage() {
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.userSlice);
-  const { data, error, isLoading } = useGetOrdersQuery(user ?? skipToken);
+  const { data, isError, isLoading } = useGetOrdersQuery(user ?? skipToken);
 
   useEffect(() => {
     if (!user) {
@@ -21,7 +21,11 @@ export default function OrderHistoryPage() {
     }
   }, []);
 
-  return (
+  return isLoading ? (
+    <h1>Loading...</h1>
+  ) : isError ? (
+    <h1>Something went wrong. </h1>
+  ) : (
     <div className={styles.container}>
       <h1 className={styles.title}>Your Orders</h1>
       {data && data.length > 0 ? (
