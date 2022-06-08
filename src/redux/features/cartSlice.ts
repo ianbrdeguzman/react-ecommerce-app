@@ -8,10 +8,14 @@ export interface ProductWithQty extends Product {
 
 interface State {
   cartItems: ProductWithQty[];
+  cartItemsLength: number;
+  cartItemsPrice: number;
 }
 
 const initialState: State = {
-  cartItems: []
+  cartItems: [],
+  cartItemsLength: 0,
+  cartItemsPrice: 0
 };
 
 export const cartSlice = createSlice({
@@ -30,6 +34,8 @@ export const cartSlice = createSlice({
       } else {
         state.cartItems = [...state.cartItems, action.payload];
       }
+      cartSlice.caseReducers.cartLength(state, action);
+      cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(state.cartItems));
     },
     remove: (state, action: PayloadAction<string>) => {
@@ -41,10 +47,30 @@ export const cartSlice = createSlice({
         (item) => item._id !== action.payload
       );
       state.cartItems = localCartItems;
+      cartSlice.caseReducers.cartLength(state, action);
+      cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(localCartItems));
     },
-    load: (state, action: PayloadAction<ProductWithQty[]>) => {
-      state.cartItems = action.payload;
+    load: (state, action) => {
+      if (state.cartItems.length === 0) {
+        const rawCartItems = Storage.load('cartItems');
+        const parseCartItems: ProductWithQty[] = JSON.parse(rawCartItems ?? '');
+        if (parseCartItems.length > 0) {
+          state.cartItems = parseCartItems;
+        }
+        cartSlice.caseReducers.cartLength(state, action);
+        cartSlice.caseReducers.cartPrice(state, action);
+      }
+    },
+    cartLength: (state, action) => {
+      state.cartItemsLength = state.cartItems.reduce((prev, curr) => {
+        return prev + curr.qty;
+      }, 0);
+    },
+    cartPrice: (state, action) => {
+      state.cartItemsPrice = state.cartItems.reduce((prev, curr) => {
+        return prev + curr.qty * curr.price;
+      }, 0);
     }
   }
 });
