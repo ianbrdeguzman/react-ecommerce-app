@@ -2,9 +2,9 @@ import { useAppDispatch } from '../redux/hooks';
 import { cartSlice } from '../redux/features/cartSlice';
 import { Product } from '../redux/types';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Aside.module.css';
-import { useNavigate } from 'react-router-dom';
 
 interface Inputs {
   qty: number;
