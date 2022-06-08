@@ -32,6 +32,17 @@ export const cartSlice = createSlice({
       }
       Storage.save('cartItems', JSON.stringify(state.cartItems));
     },
+    remove: (state, action: PayloadAction<string>) => {
+      const rawLocalCartItems = Storage.load('cartItems');
+      const parsedLocalCartItems: ProductWithQty[] = JSON.parse(
+        rawLocalCartItems ?? ''
+      );
+      const localCartItems = parsedLocalCartItems.filter(
+        (item) => item._id !== action.payload
+      );
+      state.cartItems = localCartItems;
+      Storage.save('cartItems', JSON.stringify(localCartItems));
+    },
     load: (state, action: PayloadAction<ProductWithQty[]>) => {
       state.cartItems = action.payload;
     }
