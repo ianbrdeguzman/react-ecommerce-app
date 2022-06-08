@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { cartSlice, ProductWithQty } from '../redux/features/cartSlice';
@@ -28,14 +28,18 @@ export function Header() {
     }
     if (cartItems.length === 0) {
       const rawCartItems = Storage.load('cartItems');
-      const cartItems: ProductWithQty[] = rawCartItems
-        ? JSON.parse(rawCartItems)
-        : null;
-      if (cartItems) {
+      const cartItems: ProductWithQty[] = JSON.parse(rawCartItems ?? '');
+      if (cartItems.length > 0) {
         dispatch(cartSlice.actions.load(cartItems));
       }
     }
   }, [user, cartItems]);
+
+  const numOfCartItems = useMemo(() => {
+    return cartItems.reduce((prev, curr) => {
+      return prev + curr.qty;
+    }, 0);
+  }, [cartItems]);
 
   return (
     <header className={styles.container}>
@@ -77,7 +81,7 @@ export function Header() {
         </Link>
         <Link to="/cart" className={styles.cart}>
           <AiOutlineShoppingCart size={24} />
-          <span className={styles.count}>{cartItems.length}</span>
+          <span className={styles.count}>{numOfCartItems}</span>
         </Link>
       </div>
     </header>

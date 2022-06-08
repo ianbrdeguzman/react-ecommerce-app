@@ -4,6 +4,7 @@ import { Product } from '../redux/types';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import styles from './Aside.module.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Inputs {
   qty: number;
@@ -14,12 +15,14 @@ interface Props {
 }
 
 export function Aside({ product }: Props) {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm<Inputs>();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
     const productWithQty = { ...product, qty: data.qty };
     dispatch(cartSlice.actions.add(productWithQty));
+    navigate('/cart');
   };
 
   return (
