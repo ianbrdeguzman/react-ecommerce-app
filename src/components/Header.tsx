@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { cartSlice, ProductWithQty } from '../redux/features/cartSlice';
+import { cartSlice } from '../redux/features/cartSlice';
 import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { User } from '../redux/types';
