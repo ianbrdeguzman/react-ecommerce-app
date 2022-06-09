@@ -29,7 +29,12 @@ export function CartItem({
             className={styles.select}
             defaultValue={qty}
             onChange={(e) =>
-              console.log(`change ${_id} value to ${e.currentTarget.value}`)
+              dispatch(
+                cartSlice.actions.update({
+                  id: _id,
+                  qty: +e.currentTarget.value
+                })
+              )
             }
           >
             {[...Array(stock)].map((i, index) => (
