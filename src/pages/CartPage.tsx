@@ -6,7 +6,7 @@ import { useAppSelector } from '../redux/hooks';
 import styles from './CartPage.module.css';
 
 export default function CartPage() {
-  const { cartItems, cartItemsPrice } = useAppSelector(
+  const { cartItems, cartItemsPrice, cartItemsLength } = useAppSelector(
     (state) => state.cartSlice
   );
 
@@ -16,7 +16,11 @@ export default function CartPage() {
       {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (
-        <CartList cartItems={cartItems} cartItemPrice={cartItemsPrice} />
+        <CartList
+          cartItems={cartItems}
+          cartItemsPrice={cartItemsPrice}
+          cartItemsLength={cartItemsLength}
+        />
       )}
     </div>
   );

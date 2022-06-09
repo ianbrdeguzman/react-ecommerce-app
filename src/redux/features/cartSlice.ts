@@ -51,6 +51,18 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(localCartItems));
     },
+    update: (state, action: PayloadAction<{ id: string; qty: number }>) => {
+      const updatedCartItems = state.cartItems.map((item) => {
+        if (item._id === action.payload.id) {
+          item.qty = action.payload.qty;
+        }
+        return item;
+      });
+      state.cartItems = updatedCartItems;
+      cartSlice.caseReducers.cartLength(state, action);
+      cartSlice.caseReducers.cartPrice(state, action);
+      Storage.save('cartItems', JSON.stringify(updatedCartItems));
+    },
     load: (state, action) => {
       if (state.cartItems.length === 0) {
         const rawCartItems = Storage.load('cartItems');

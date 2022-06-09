@@ -2,15 +2,16 @@ import styles from './CartAside.module.css';
 
 interface Props {
   totalPrice: number;
+  totalItems: number;
 }
 
-export function CartAside({ totalPrice }: Props) {
+export function CartAside({ totalPrice, totalItems }: Props) {
   return (
     <div className={styles.container}>
       <p className={styles.text}>
-        Subtotal (2 items):{' '}
+        {`Subtotal (${totalItems} items): `}
         <span>
-          <b>${totalPrice}</b>
+          <b>${totalPrice.toFixed(2)}</b>
         </span>
       </p>
       <button
