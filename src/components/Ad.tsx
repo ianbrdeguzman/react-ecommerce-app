@@ -3,7 +3,7 @@ import styles from './Ad.module.css';
 export function Ad() {
   return (
     <div className={styles.container}>
-      <img src="../src/assets/ad.png" alt="Ad" />
+      <img src="../../src/assets/ad.png" alt="Ad" />
       <div className={styles.textContainer}>
         <p className={styles.text}>
           You could get <span>5% back at Amazon.ca</span>, grocery stores and

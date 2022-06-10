@@ -1,29 +1,15 @@
-import { useAppDispatch } from '../redux/hooks';
-import { cartSlice } from '../redux/features/cartSlice';
+import { useState } from 'react';
 import { Product } from '../redux/types';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './Aside.module.css';
-
-interface Inputs {
-  qty: number;
-}
 
 interface Props {
   product: Product;
 }
 
 export function Aside({ product }: Props) {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm<Inputs>();
-
-  const handleOnSubmit: SubmitHandler<Inputs> = async (data) => {
-    const productWithQty = { ...product, qty: data.qty };
-    dispatch(cartSlice.actions.add(productWithQty));
-    navigate('/cart');
-  };
+  const [qty, setQty] = useState<number>(1);
 
   return (
     <div className={styles.container}>
@@ -34,13 +20,13 @@ export function Aside({ product }: Props) {
       <p className={styles.stock}>
         {product.stock === 0 ? 'Out of Stock' : 'In Stock'}
       </p>
-      <form className={styles.quantity} onSubmit={handleSubmit(handleOnSubmit)}>
+      <div className={styles.quantity}>
         <div className={styles.selectContainer}>
           <p>Qty:</p>
           {product.stock > 0 ? (
             <select
-              {...register('qty', { valueAsNumber: true })}
               className={styles.select}
+              onChange={(e) => setQty(+e.currentTarget.value)}
             >
               {[...Array(product.stock)].map((i, index) => (
                 <option key={index} value={index + 1}>
@@ -52,14 +38,12 @@ export function Aside({ product }: Props) {
             <p>Out of stock</p>
           )}
         </div>
-        <button
-          type="submit"
-          disabled={product.stock === 0}
-          className={styles.button}
-        >
-          {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-        </button>
-      </form>
+        <Link to={`/cart/${product._id}/${qty}`}>
+          <button disabled={product.stock === 0} className={styles.button}>
+            {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

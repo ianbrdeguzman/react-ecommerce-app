@@ -63,7 +63,7 @@ export function OrderHistoryItem({
               <Link to={`/product/${productId}`}>
                 <p className={styles.itemInfoName}>{title}</p>
               </Link>
-              <Link to="/">
+              <Link to={`/cart/${productId}/1`}>
                 <button className={styles.itemInfoButton}>Buy it again</button>
               </Link>
             </div>
