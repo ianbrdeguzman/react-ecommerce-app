@@ -33,20 +33,16 @@ export default function ProfilePage() {
     email,
     password
   }) => {
-    try {
-      if (user) {
-        const data = await update({
-          userId: user._id,
-          name: name ?? '',
-          email: email ?? '',
-          password: password ?? '',
-          token: user.token
-        }).unwrap();
+    if (user) {
+      const data = await update({
+        userId: user._id,
+        name: name ?? '',
+        email: email ?? '',
+        password: password ?? '',
+        token: user.token
+      }).unwrap();
 
-        dispatch(userSlice.actions.login(data));
-      }
-    } catch (error) {
-      throw error;
+      dispatch(userSlice.actions.login(data));
     }
   };
 

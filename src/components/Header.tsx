@@ -37,7 +37,7 @@ export function Header() {
       <div className={styles.content}>
         <Link to="/">
           <img
-            src="../src/assets/amazon-logo.svg"
+            src="../../src/assets/amazon-logo.svg"
             alt="E-Commerce App Logo"
             className={styles.logo}
           />

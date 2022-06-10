@@ -31,15 +31,11 @@ export default function LoginPage() {
   } = useForm<Inputs>();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
-    try {
-      const data = await signIn({
-        email,
-        password
-      }).unwrap();
-      dispatch(userSlice.actions.login(data));
-    } catch (error) {
-      throw error;
-    }
+    const data = await signIn({
+      email,
+      password
+    }).unwrap();
+    dispatch(userSlice.actions.login(data));
   };
 
   useEffect(() => {

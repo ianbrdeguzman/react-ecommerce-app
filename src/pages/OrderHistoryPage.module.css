@@ -12,6 +12,12 @@
   border-bottom: 1px solid rgba(0, 0, 0, 10%);
 }
 
+.loading,
+.error {
+  margin-top: 4rem;
+  text-align: center;
+}
+
 @media (min-width: 48rem) {
   .container {
     min-height: calc(100vh - 4.661rem);

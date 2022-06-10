@@ -7,7 +7,7 @@ export function EmptyCart() {
     <div className={styles.container}>
       <div className={styles.imageContainer}>
         <img
-          src="../src/assets/empty-cart.svg"
+          src="../../src/assets/empty-cart.svg"
           alt="Empty Cart"
           className={styles.image}
         />
