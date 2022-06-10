@@ -22,9 +22,9 @@ export default function OrderHistoryPage() {
   }, []);
 
   return isLoading ? (
-    <h1>Loading...</h1>
+    <h1 className={styles.loading}>Loading...</h1>
   ) : isError ? (
-    <h1>Something went wrong. </h1>
+    <h1 className={styles.error}>Something went wrong. </h1>
   ) : (
     <div className={styles.container}>
       <h1 className={styles.title}>Your Orders</h1>
