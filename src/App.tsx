@@ -18,7 +18,9 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/order-history" element={<OrderHistoryPage />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route path="/cart" element={<CartPage />}>
+            <Route path=":id/:qty" element={<CartPage />} />
+          </Route>
           <Route path="/product/:id" element={<ProductPage />} />
         </Route>
       </Routes>

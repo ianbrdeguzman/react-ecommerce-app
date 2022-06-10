@@ -9,14 +9,12 @@ export default function HomePage() {
 
   return isLoading ? (
     <h1 className={styles.loading}>Loading...</h1>
-  ) : isError ? (
+  ) : isError || !data ? (
     <h1 className={styles.error}>Something went wrong.</h1>
   ) : (
-    data && (
-      <div className={styles.container}>
-        <Slider />
-        <ProductList products={data} />
-      </div>
-    )
+    <div className={styles.container}>
+      <Slider />
+      <ProductList products={data} />
+    </div>
   );
 }
