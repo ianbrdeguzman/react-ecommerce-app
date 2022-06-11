@@ -1,0 +1,44 @@
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 6rem;
+}
+
+.checkout {
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+}
+
+.steps {
+  padding-left: 1rem;
+  border-top: 1;
+  color: var(--darkgray);
+  border-top: 1px solid var(--darkgray);
+}
+
+.active {
+  border-top: 1px solid var(--darkyellow);
+  color: var(--darkyellow);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    max-width: 33.75rem;
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo {
+    margin-right: 1rem;
+  }
+}
