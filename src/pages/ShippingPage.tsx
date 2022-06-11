@@ -1,30 +1,11 @@
-import { Link } from 'react-router-dom';
+import { CheckoutSteps } from '../components/CheckoutSteps';
+
 import styles from './ShippingPage.module.css';
 
 export default function ShippingPage() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <img
-          src="../../src/assets/amazon-logo.png"
-          alt="E-Commerce App Logo"
-          className={styles.logo}
-        />
-        <div className={styles.checkoutSteps}>
-          <Link to="/cart" className={styles.steps}>
-            CART
-          </Link>
-          <Link to="/shipping" className={styles.steps}>
-            ADDRESS
-          </Link>
-          <Link to="/payment" className={styles.steps}>
-            PAYMENT
-          </Link>
-          <Link to="/order" className={styles.steps}>
-            PLACE ORDER
-          </Link>
-        </div>
-      </header>
+      <CheckoutSteps step={1} />
       <div className={styles.content}>
         <h1 className={styles.title}>Select a shipping address</h1>
         <form>
