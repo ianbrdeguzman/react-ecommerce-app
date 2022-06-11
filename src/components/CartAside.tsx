@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styles from './CartAside.module.css';
 
 interface Props {
@@ -14,12 +16,9 @@ export function CartAside({ totalPrice, totalItems }: Props) {
           <b>${totalPrice.toFixed(2)}</b>
         </span>
       </p>
-      <button
-        className={styles.button}
-        onClick={() => console.log('go to checkout page')}
-      >
-        Proceed to checkout
-      </button>
+      <Link to="/shipping">
+        <button className={styles.button}>Proceed to checkout</button>
+      </Link>
     </div>
   );
 }
