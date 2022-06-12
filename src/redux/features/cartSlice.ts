@@ -2,6 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Storage } from '../../utils/storage';
 import { Product, ShippingDetails } from '../types';
 
+export enum PaymentMethod {
+  paypal = 'paypal',
+  stripe = 'stripe'
+}
+
 export interface ProductWithQty extends Product {
   qty: number;
 }
@@ -11,13 +16,15 @@ interface State {
   cartItemsLength: number;
   cartItemsPrice: number;
   shippingDetails: ShippingDetails | null;
+  paymentMethod: PaymentMethod;
 }
 
 const initialState: State = {
   cartItems: [],
   cartItemsLength: 0,
   cartItemsPrice: 0,
-  shippingDetails: null
+  shippingDetails: null,
+  paymentMethod: PaymentMethod.paypal
 };
 
 export const cartSlice = createSlice({
@@ -110,6 +117,9 @@ export const cartSlice = createSlice({
     },
     clearShippingDetails: (state, action: PayloadAction<void>) => {
       state.shippingDetails = null;
+    },
+    updatePaymentMethod: (state, action: PayloadAction<PaymentMethod>) => {
+      state.paymentMethod = action.payload;
     }
   }
 });
