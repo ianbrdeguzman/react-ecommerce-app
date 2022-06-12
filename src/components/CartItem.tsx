@@ -30,7 +30,7 @@ export function CartItem({
             defaultValue={qty}
             onChange={(e) =>
               dispatch(
-                cartSlice.actions.update({
+                cartSlice.actions.updateCartItem({
                   id: _id,
                   qty: +e.currentTarget.value
                 })
@@ -46,7 +46,7 @@ export function CartItem({
         </label>
         <button
           className={styles.button}
-          onClick={() => dispatch(cartSlice.actions.remove(_id))}
+          onClick={() => dispatch(cartSlice.actions.removeCartItem(_id))}
         >
           Delete
         </button>

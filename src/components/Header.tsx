@@ -29,7 +29,7 @@ export function Header() {
         dispatch(userSlice.actions.login(user));
       }
     }
-    dispatch(cartSlice.actions.load([]));
+    dispatch(cartSlice.actions.loadCartItems([]));
   }, [user, cartItems]);
 
   return (

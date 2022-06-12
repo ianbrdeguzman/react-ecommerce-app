@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Storage } from '../../utils/storage';
 import { User } from '../types';
+import { cartSlice } from './cartSlice';
 
 interface State {
   user: User | null;
@@ -18,8 +19,9 @@ export const userSlice = createSlice({
       Storage.save('user', JSON.stringify(action.payload));
       state.user = action.payload;
     },
-    logout: (state, action: PayloadAction<string>) => {
-      Storage.remove(action.payload);
+    logout: (state, action: PayloadAction<void>) => {
+      Storage.remove('user');
+      Storage.remove('shippingDetails');
       state.user = null;
     }
   }

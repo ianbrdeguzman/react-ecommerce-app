@@ -20,7 +20,7 @@ export default function CartPage() {
 
   useEffect(() => {
     if (data && qty) {
-      dispatch(cartSlice.actions.add({ ...data, qty: +qty }));
+      dispatch(cartSlice.actions.addCartItem({ ...data, qty: +qty }));
     }
   }, [data]);
 

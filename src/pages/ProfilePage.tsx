@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useUpdateMutation } from '../redux/services/userApi';
 import { Alert } from '../components/Alert';
+import { cartSlice } from '../redux/features/cartSlice';
 
 import styles from './ProfilePage.module.css';
 
@@ -47,7 +48,8 @@ export default function ProfilePage() {
   };
 
   const handleOnSignOut = () => {
-    dispatch(userSlice.actions.logout('user'));
+    dispatch(userSlice.actions.logout());
+    dispatch(cartSlice.actions.clearShippingDetails());
     navigate('/');
   };
 
