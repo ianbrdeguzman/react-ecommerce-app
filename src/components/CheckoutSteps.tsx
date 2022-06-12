@@ -5,11 +5,12 @@ import styles from './CheckoutSteps.module.css';
 
 interface Props {
   step: number;
+  className?: string;
 }
 
-export function CheckoutSteps({ step }: Props) {
+export function CheckoutSteps({ step, className }: Props) {
   return (
-    <header className={styles.container}>
+    <header className={cn(styles.container, className)}>
       <Link to="/">
         <img
           src="../../src/assets/amazon-logo.png"
@@ -20,13 +21,13 @@ export function CheckoutSteps({ step }: Props) {
       <div className={styles.checkout}>
         <Link
           to="/cart"
-          className={cn(styles.steps, { [styles.active]: step === 1 })}
+          className={cn(styles.steps, { [styles.active]: step === 1 || 2 })}
         >
           CART
         </Link>
         <Link
           to="/shipping"
-          className={cn(styles.steps, { [styles.active]: step === 1 })}
+          className={cn(styles.steps, { [styles.active]: step === 1 || 2 })}
         >
           ADDRESS
         </Link>

@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import ProductPage from './pages/ProductPage';
 import ProfilePage from './pages/ProfilePage';
 import ShippingPage from './pages/ShippingPage';
+import PaymentSelectionPage from './pages/PaymentSelectionPage';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/payment" element={<PaymentSelectionPage />} />
         </Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />

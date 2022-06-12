@@ -1,8 +1,14 @@
+import cn from 'classnames';
+
 import styles from './Ad.module.css';
 
-export function Ad() {
+interface Props {
+  className?: string;
+}
+
+export function Ad({ className }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, className)}>
       <img src="../../src/assets/ad.png" alt="Ad" />
       <div className={styles.textContainer}>
         <p className={styles.text}>
