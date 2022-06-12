@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Storage } from '../../utils/storage';
-import { Product } from '../types';
+import { Product, ShippingDetails } from '../types';
 
 export interface ProductWithQty extends Product {
   qty: number;
@@ -10,19 +10,21 @@ interface State {
   cartItems: ProductWithQty[];
   cartItemsLength: number;
   cartItemsPrice: number;
+  shippingDetails: ShippingDetails | null;
 }
 
 const initialState: State = {
   cartItems: [],
   cartItemsLength: 0,
-  cartItemsPrice: 0
+  cartItemsPrice: 0,
+  shippingDetails: null
 };
 
 export const cartSlice = createSlice({
   name: 'cartSlice',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<ProductWithQty>) => {
+    addCartItem: (state, action: PayloadAction<ProductWithQty>) => {
       const itemInCart = state.cartItems.find(
         (item) => item._id === action.payload._id
       );
@@ -38,7 +40,7 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(state.cartItems));
     },
-    remove: (state, action: PayloadAction<string>) => {
+    removeCartItem: (state, action: PayloadAction<string>) => {
       const rawLocalCartItems = Storage.load('cartItems');
       const parsedLocalCartItems: ProductWithQty[] = JSON.parse(
         rawLocalCartItems ?? ''
@@ -51,7 +53,10 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(localCartItems));
     },
-    update: (state, action: PayloadAction<{ id: string; qty: number }>) => {
+    updateCartItem: (
+      state,
+      action: PayloadAction<{ id: string; qty: number }>
+    ) => {
       const updatedCartItems = state.cartItems.map((item) => {
         if (item._id === action.payload.id) {
           item.qty = action.payload.qty;
@@ -63,15 +68,30 @@ export const cartSlice = createSlice({
       cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(updatedCartItems));
     },
-    load: (state, action) => {
+    loadCartItems: (state, action) => {
       if (state.cartItems.length === 0) {
         const rawCartItems = Storage.load('cartItems');
-        const parseCartItems: ProductWithQty[] = JSON.parse(rawCartItems ?? '');
-        if (parseCartItems.length > 0) {
-          state.cartItems = parseCartItems;
+        if (rawCartItems) {
+          const parseCartItems: ProductWithQty[] = JSON.parse(
+            rawCartItems ?? ''
+          );
+          if (parseCartItems.length > 0) {
+            state.cartItems = parseCartItems;
+          }
         }
         cartSlice.caseReducers.cartLength(state, action);
         cartSlice.caseReducers.cartPrice(state, action);
+      }
+    },
+    loadShippingDetails: (state, action: PayloadAction<void>) => {
+      const rawShippingDetails = Storage.load('shippingDetails');
+      if (rawShippingDetails) {
+        const parseShippingDetails: ShippingDetails = JSON.parse(
+          rawShippingDetails ?? ''
+        );
+        if (parseShippingDetails) {
+          state.shippingDetails = parseShippingDetails;
+        }
       }
     },
     cartLength: (state, action) => {
@@ -83,6 +103,13 @@ export const cartSlice = createSlice({
       state.cartItemsPrice = state.cartItems.reduce((prev, curr) => {
         return prev + curr.qty * curr.price;
       }, 0);
+    },
+    addShippingDetails: (state, action: PayloadAction<ShippingDetails>) => {
+      state.shippingDetails = action.payload;
+      Storage.save('shippingDetails', JSON.stringify(action.payload));
+    },
+    clearShippingDetails: (state, action: PayloadAction<void>) => {
+      state.shippingDetails = null;
     }
   }
 });
