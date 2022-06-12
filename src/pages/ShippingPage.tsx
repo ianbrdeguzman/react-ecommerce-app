@@ -25,6 +25,7 @@ export default function ShippingPage() {
 
   const handleOnSubmit: SubmitHandler<ShippingDetails> = (data) => {
     dispatch(cartSlice.actions.addShippingDetails(data));
+    navigate('/payment');
   };
 
   useEffect(() => {
