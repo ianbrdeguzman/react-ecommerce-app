@@ -10,6 +10,7 @@ import ProductPage from './pages/ProductPage';
 import ProfilePage from './pages/ProfilePage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentSelectionPage from './pages/PaymentSelectionPage';
+import OrderPage from './pages/OrderPage';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           </Route>
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/" element={<ProtectedRoute />}>
+            <Route path="/order/:id" element={<OrderPage />} />
             <Route path="/order-history" element={<OrderHistoryPage />} />
           </Route>
         </Route>

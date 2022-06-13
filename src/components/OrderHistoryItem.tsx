@@ -3,6 +3,7 @@ import { Order } from '../redux/types';
 import { formatDate } from '../utils/formatDate';
 
 import styles from './OrderHistoryItem.module.css';
+
 interface Props {
   order: Order;
 }
@@ -22,39 +23,41 @@ export function OrderHistoryItem({
 }: Props) {
   return (
     <article className={styles.container}>
-      <section className={styles.orderSection}>
-        <div className={styles.orderInfo}>
-          <p className={styles.orderInfoTitle}>ORDER PLACED</p>
-          <p>{formatDate(createdAt)}</p>
-        </div>
-        <div className={styles.orderInfo}>
-          <p className={styles.orderInfoTitle}>TOTAL</p>
-          <p>${totalPrice}</p>
-        </div>
-        <div className={styles.orderInfo}>
-          <p className={styles.orderInfoTitle}>SHIP TO</p>
-          <p>{fullname}</p>
-          <p>{addressOne}</p>
-          <p>{addressTwo}</p>
-          <p>{city}</p>
-          <p>{postal}</p>
-          <p>{phone}</p>
-        </div>
-        <div className={styles.orderInfo}>
+      <Link to={`/order/${_id}`}>
+        <section className={styles.orderSection}>
           <div className={styles.orderInfo}>
-            <p className={styles.orderInfoTitle}>ORDER ID</p>
-            <p>{_id}</p>
+            <p className={styles.orderInfoTitle}>ORDER PLACED</p>
+            <p>{formatDate(createdAt)}</p>
           </div>
           <div className={styles.orderInfo}>
-            <p className={styles.orderInfoTitle}>PAID</p>
-            <p>{isPaid ? formatDate(paidAt) : 'No'}</p>
+            <p className={styles.orderInfoTitle}>TOTAL</p>
+            <p>${totalPrice}</p>
           </div>
           <div className={styles.orderInfo}>
-            <p className={styles.orderInfoTitle}>DELIVERED</p>
-            <p>{isDelivered ? formatDate(deliveredAt) : 'No'}</p>
+            <p className={styles.orderInfoTitle}>SHIP TO</p>
+            <p>{fullname}</p>
+            <p>{addressOne}</p>
+            <p>{addressTwo}</p>
+            <p>{city}</p>
+            <p>{postal}</p>
+            <p>{phone}</p>
           </div>
-        </div>
-      </section>
+          <div className={styles.orderInfo}>
+            <div className={styles.orderInfo}>
+              <p className={styles.orderInfoTitle}>ORDER ID</p>
+              <p>{_id}</p>
+            </div>
+            <div className={styles.orderInfo}>
+              <p className={styles.orderInfoTitle}>PAID</p>
+              <p>{isPaid ? formatDate(paidAt) : 'No'}</p>
+            </div>
+            <div className={styles.orderInfo}>
+              <p className={styles.orderInfoTitle}>DELIVERED</p>
+              <p>{isDelivered ? formatDate(deliveredAt) : 'No'}</p>
+            </div>
+          </div>
+        </section>
+      </Link>
       <section className={styles.itemSection}>
         {orderItems.map(({ _id, image, title, productId }) => (
           <article key={_id} className={styles.item}>
