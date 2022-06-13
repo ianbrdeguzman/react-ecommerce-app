@@ -38,8 +38,8 @@ export function Aside({ product }: Props) {
             <p>Out of stock</p>
           )}
         </div>
-        <Link to={`/cart/${product._id}/${qty}`}>
-          <button disabled={product.stock === 0} className={styles.button}>
+        <Link to={`/cart/${product._id}/${qty}`} className={styles.button}>
+          <button disabled={product.stock === 0}>
             {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </button>
         </Link>
