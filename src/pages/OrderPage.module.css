@@ -26,9 +26,53 @@
 }
 
 .orderDetails {
-  padding: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid red;
+  border: 1px solid var(--gray);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.addressContainer,
+.paymentContainer {
+  flex: 1;
+  padding: 1rem;
+}
+
+.paymentContainer {
+  padding-top: 0;
+}
+
+.addressTitle,
+.paymentTitle {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.addressDetail,
+.paymentDetail {
+  font-size: 0.875rem;
+  line-height: 20px;
+}
+
+.deliveryStatus {
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--red);
+  border-radius: 0.25rem;
+  background-color: var(--lightred);
+}
+
+.paymentStatus {
+  padding: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--green);
+  border-radius: 0.25rem;
+  background-color: var(--lightgreen);
 }
 
 .order {
