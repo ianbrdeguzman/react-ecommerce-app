@@ -105,6 +105,20 @@
     margin-right: 1rem;
   }
 
+  .orderDetails {
+    flex-direction: row;
+  }
+
+  .paymentContainer {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .paymentDetail {
+    flex: 1;
+  }
+
   .aside {
     max-width: 14.5rem;
   }
