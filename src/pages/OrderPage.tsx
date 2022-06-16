@@ -42,7 +42,27 @@ export default function OrderPage() {
               <p className={styles.paymentStatus}>Paid at June 20, 2022</p>
             </div>
           </div>
-          <div className={styles.order}>order items</div>
+          <div className={styles.order}>
+            <h3 className={styles.orderTitle}>Order Items</h3>
+            <div className={styles.orderItem}>
+              <img
+                src="https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg"
+                alt="item"
+                className={styles.orderItemImage}
+              />
+              <div>
+                <p>
+                  Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance
+                  Boost SATA III 2.5
+                </p>
+                <p>1 x $109.00</p>
+              </div>
+              <div className={styles.orderItemPriceContainer}>
+                <p>Price</p>
+                <p className={styles.orderItemPriceAmount}>$109.00</p>
+              </div>
+            </div>
+          </div>
         </div>
         <div className={styles.aside}>aside</div>
       </div>
