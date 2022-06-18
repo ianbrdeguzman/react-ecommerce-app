@@ -12,8 +12,29 @@
   cursor: pointer;
 }
 
+.content {
+  margin: 1rem 0;
+}
+
+.image {
+  width: 100%;
+}
+
 .error,
 .loading {
   margin-top: 4rem;
   text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .content {
+    max-width: 90rem;
+    margin: 4rem auto;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .image {
+    width: 15vw;
+  }
 }
