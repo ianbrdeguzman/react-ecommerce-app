@@ -12,9 +12,9 @@ export default function OrderPage() {
   const { data, isError, isLoading } = useGetOrderByIdQuery(id ?? skipToken);
 
   return isLoading ? (
-    <h1>Loading...</h1>
+    <h1 className={styles.loading}>Loading...</h1>
   ) : isError ? (
-    <h1>Something went wrong.</h1>
+    <h1 className={styles.error}>Something went wrong.</h1>
   ) : (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -22,7 +22,15 @@ export default function OrderPage() {
       </header>
       <div className={styles.content}>
         <div className={styles.orderContainer}>
-          <OrderDetails details={data!} />
+          <OrderDetails
+            shippingDetails={data!.shippingDetails}
+            user={data!.user}
+            isDelivered={data!.isDelivered}
+            deliveredAt={data!.deliveredAt}
+            isPaid={data!.isPaid}
+            paidAt={data!.paidAt}
+            paymentMethod={data!.paymentMethod}
+          />
           <OrderItems orderItems={data!.orderItems} />
         </div>
         <OrderSummary

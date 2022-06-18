@@ -102,6 +102,12 @@
   font-size: 1rem;
 }
 
+.error,
+.loading {
+  text-align: center;
+  margin-top: 4rem;
+}
+
 @media (min-width: 48rem) {
   .header {
     max-width: 90vw;
