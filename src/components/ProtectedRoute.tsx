@@ -19,7 +19,7 @@ export function ProtectedRoute() {
         dispatch(userSlice.actions.login(user));
       } else {
         navigate({
-          pathname: '/login',
+          pathname: '/signin',
           search: `?redirect=${pathname}`
         });
       }
