@@ -1,0 +1,50 @@
+.container {
+  padding: 1rem;
+  border: 1px solid var(--gray);
+  border-radius: 0.25rem;
+}
+
+.title {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.item {
+  font-size: 0.875rem;
+}
+
+.image {
+  width: 100%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.price {
+  text-align: right;
+}
+
+.amount {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .container {
+    margin-right: 1rem;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .image {
+    max-width: 7.5rem;
+    margin-bottom: unset;
+    margin-right: 1rem;
+  }
+
+  .price {
+    margin-left: 1rem;
+  }
+}
