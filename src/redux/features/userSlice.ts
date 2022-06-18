@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Storage } from '../../utils/storage';
 import { User } from '../types';
-import { cartSlice } from './cartSlice';
 
 interface State {
   user: User | null;
