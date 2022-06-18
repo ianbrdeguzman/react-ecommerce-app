@@ -1,34 +1,34 @@
 import { useState } from 'react';
-import { Product } from '../redux/types';
 import { Link } from 'react-router-dom';
+import { Product } from '../redux/types';
 
-import styles from './Aside.module.css';
+import styles from './ProductInfoAside.module.css';
 
-interface Props {
-  product: Product;
-}
-
-export function Aside({ product }: Props) {
+export function ProductInfoAside({
+  _id,
+  price,
+  stock
+}: Pick<Product, '_id' | 'stock' | 'price'>) {
   const [qty, setQty] = useState<number>(1);
 
   return (
     <div className={styles.container}>
-      <p className={styles.price}>${product.price}</p>
+      <p className={styles.price}>${price}</p>
       <p className={styles.delivery}>
         <span>FREE Delivery</span> Wednesday June 1st
       </p>
       <p className={styles.stock}>
-        {product.stock === 0 ? 'Out of Stock' : 'In Stock'}
+        {stock === 0 ? 'Out of Stock' : 'In Stock'}
       </p>
       <div className={styles.quantity}>
         <div className={styles.selectContainer}>
           <p>Qty:</p>
-          {product.stock > 0 ? (
+          {stock > 0 ? (
             <select
               className={styles.select}
               onChange={(e) => setQty(+e.currentTarget.value)}
             >
-              {[...Array(product.stock)].map((i, index) => (
+              {[...Array(stock)].map((i, index) => (
                 <option key={index} value={index + 1}>
                   {index + 1}
                 </option>
@@ -38,9 +38,9 @@ export function Aside({ product }: Props) {
             <p>Out of stock</p>
           )}
         </div>
-        <Link to={`/cart/${product._id}/${qty}`} className={styles.button}>
-          <button disabled={product.stock === 0}>
-            {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+        <Link to={`/cart/${_id}/${qty}`} className={styles.button}>
+          <button disabled={stock === 0}>
+            {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
           </button>
         </Link>
       </div>

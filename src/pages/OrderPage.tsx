@@ -13,7 +13,7 @@ export default function OrderPage() {
 
   return isLoading ? (
     <h1 className={styles.loading}>Loading...</h1>
-  ) : isError ? (
+  ) : isError || !data ? (
     <h1 className={styles.error}>Something went wrong.</h1>
   ) : (
     <div className={styles.container}>
@@ -23,22 +23,22 @@ export default function OrderPage() {
       <div className={styles.content}>
         <div className={styles.orderContainer}>
           <OrderDetails
-            shippingDetails={data!.shippingDetails}
-            user={data!.user}
-            isDelivered={data!.isDelivered}
-            deliveredAt={data!.deliveredAt}
-            isPaid={data!.isPaid}
-            paidAt={data!.paidAt}
+            shippingDetails={data.shippingDetails}
+            user={data.user}
+            isDelivered={data.isDelivered}
+            deliveredAt={data.deliveredAt}
+            isPaid={data.isPaid}
+            paidAt={data.paidAt}
             paymentMethod={data!.paymentMethod}
           />
-          <OrderItems orderItems={data!.orderItems} />
+          <OrderItems orderItems={data.orderItems} />
         </div>
         <OrderSummary
-          totalNumOfItems={data!.orderItems.length}
-          itemPrice={data!.itemPrice}
-          shippingPrice={data!.shippingPrice}
-          taxPrice={data!.taxPrice}
-          totalPrice={data!.totalPrice}
+          totalNumOfItems={data.orderItems.length}
+          itemPrice={data.itemPrice}
+          shippingPrice={data.shippingPrice}
+          taxPrice={data.taxPrice}
+          totalPrice={data.totalPrice}
         />
       </div>
     </div>

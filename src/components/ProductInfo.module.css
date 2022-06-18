@@ -1,11 +1,3 @@
-.container {
-  margin: 1rem 0;
-}
-
-.image {
-  width: 100%;
-}
-
 .title {
   font-weight: 500;
   margin: 0.5rem 0;
@@ -24,17 +16,6 @@
 
 @media (min-width: 48rem) {
   .container {
-    max-width: 90rem;
-    margin: 4rem auto;
-    display: flex;
-    align-items: flex-start;
-  }
-
-  .image {
-    max-width: 15rem;
-  }
-
-  .content {
     margin: 0 1rem;
   }
 
