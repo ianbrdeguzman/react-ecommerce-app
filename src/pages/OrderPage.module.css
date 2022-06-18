@@ -102,37 +102,6 @@
   font-size: 1rem;
 }
 
-.aside {
-  width: 100%;
-  padding: 1rem;
-  border: 1px solid var(--gray);
-  border-radius: 0.25rem;
-}
-
-.asideDetail {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  margin-top: 0.5rem;
-}
-
-.asideDetail:nth-child(4) {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--gray);
-}
-
-.asideDetail:nth-child(5) {
-  font-size: 1rem;
-  font-weight: bold;
-  margin: 1rem 0 0;
-}
-
-.asideTotal {
-  font-size: 1rem;
-  margin: 1rem 0 0;
-  display: flex;
-}
-
 @media (min-width: 48rem) {
   .header {
     max-width: 90vw;
