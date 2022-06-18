@@ -20,8 +20,7 @@ interface Error {
 }
 
 export default function RegisterPage() {
-  const [signup, { isLoading, isSuccess, error, isError }] =
-    useSignupMutation();
+  const [signup, { isLoading, isSuccess, isError }] = useSignupMutation();
 
   const {
     register,
@@ -63,15 +62,12 @@ export default function RegisterPage() {
           text="You have successfully registered"
         />
       )}
-      {error && (
+      {isError && (
         <Alert
           type="error"
           title="There was a problem"
-          text={
-            'data' in error
-              ? (error.data as unknown as Error).error.message
-              : ''
-          }
+          text="Email address already used"
+          className={styles.alert}
         />
       )}
       <div className={styles.content}>

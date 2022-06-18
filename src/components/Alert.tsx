@@ -6,12 +6,13 @@ interface Props {
   type: 'success' | 'warning' | 'error';
   title: string;
   text: string;
+  className?: string;
 }
 
-export function Alert({ type, title, text }: Props) {
+export function Alert({ type, title, text, className }: Props) {
   return (
     <div
-      className={cn(styles.container, {
+      className={cn(styles.container, className, {
         [styles.error]: type === 'error',
         [styles.warning]: type === 'warning',
         [styles.success]: type === 'success'
