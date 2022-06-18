@@ -11,24 +11,26 @@ export default function ProductPage() {
   const { id } = useParams();
   const { data, isError, isLoading } = useGetProductByIdQuery(id ?? skipToken);
 
-  return isLoading ? (
-    <h1 className={styles.loading}>Loading...</h1>
-  ) : isError || !data ? (
-    <h1 className={styles.error}>Something went wrong.</h1>
-  ) : (
+  return (
     <div className={styles.container}>
       <button className={styles.back} onClick={() => navigate(-1)}>
         Back
       </button>
-      <div className={styles.content}>
-        <img src={data.image} alt={data.title} className={styles.image} />
-        <ProductInfo {...data} />
-        <ProductInfoAside
-          _id={data._id}
-          stock={data.stock}
-          price={data.price}
-        />
-      </div>
+      {isLoading ? (
+        <h1 className={styles.loading}>Loading...</h1>
+      ) : isError || !data ? (
+        <h1 className={styles.error}>Something went wrong.</h1>
+      ) : (
+        <div className={styles.content}>
+          <img src={data.image} alt={data.title} className={styles.image} />
+          <ProductInfo {...data} />
+          <ProductInfoAside
+            _id={data._id}
+            stock={data.stock}
+            price={data.price}
+          />
+        </div>
+      )}
     </div>
   );
 }
