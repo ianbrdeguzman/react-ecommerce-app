@@ -9,8 +9,26 @@
   margin-top: 4rem;
 }
 
+.productContainer {
+  width: 100vw;
+  padding: 0 1rem 2rem;
+  list-style: none;
+  font-size: 0.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0.25rem;
+}
+
 @media (min-width: 48rem) {
   .container {
     min-height: calc(100vh - 4.661rem);
+  }
+
+  .productContainer {
+    gap: 1rem;
   }
 }

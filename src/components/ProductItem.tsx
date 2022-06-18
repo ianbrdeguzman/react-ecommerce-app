@@ -14,14 +14,10 @@ interface Props {
 
 export function ProductItem({ _id, image, title, rating, reviews }: Props) {
   return (
-    <li className={styles.container}>
-      <Link to={`/product/${_id}`}>
-        <div className={styles.imageContainer}>
-          <img src={image} alt={title} className={styles.image} />
-        </div>
-        <p className={styles.title}>{title}</p>
-        <Rating rating={rating} reviews={formatNumber(reviews)} />
-      </Link>
-    </li>
+    <Link to={`/product/${_id}`} className={styles.container}>
+      <img src={image} alt={title} className={styles.image} />
+      <p className={styles.title}>{title}</p>
+      <Rating rating={rating} reviews={formatNumber(reviews)} />
+    </Link>
   );
 }
