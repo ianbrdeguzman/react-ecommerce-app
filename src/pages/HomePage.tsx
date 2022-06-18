@@ -7,18 +7,20 @@ import styles from './HomePage.module.css';
 export default function HomePage() {
   const { data, isError, isLoading } = useGetProductsQuery();
 
-  return isLoading ? (
-    <h1 className={styles.loading}>Loading...</h1>
-  ) : isError || !data ? (
-    <h1 className={styles.error}>Something went wrong.</h1>
-  ) : (
+  return (
     <div className={styles.container}>
       <Slider />
-      <div className={styles.productContainer}>
-        {data.map((product) => (
-          <ProductItem key={product._id} {...product} />
-        ))}
-      </div>
+      {isLoading ? (
+        <h1 className={styles.loading}>Loading...</h1>
+      ) : isError || !data ? (
+        <h1 className={styles.error}>Something went wrong.</h1>
+      ) : (
+        <div className={styles.productContainer}>
+          {data.map((product) => (
+            <ProductItem key={product._id} {...product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -5,14 +5,11 @@ import { Product } from '../redux/types';
 import styles from './ProductInfo.module.css';
 
 export function ProductInfo({
-  _id,
-  image,
   title,
   rating,
   reviews,
   price,
-  description,
-  stock
+  description
 }: Pick<
   Product,
   | '_id'
