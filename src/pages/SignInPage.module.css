@@ -82,7 +82,8 @@
 
 @media (min-width: 48rem) {
   .content,
-  .footer {
+  .footer,
+  .alert {
     max-width: 21.75rem;
   }
 }

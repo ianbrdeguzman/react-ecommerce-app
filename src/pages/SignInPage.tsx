@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useSignInMutation } from '../redux/services/userApi';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import styles from './LoginPage.module.css';
+import styles from './SignInPage.module.css';
 
 interface Inputs {
   email: string;
@@ -18,16 +18,18 @@ interface Error {
   status: number;
 }
 
-export default function LoginPage() {
+export default function SignInPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { user } = useAppSelector((state) => state.userSlice);
-  const [signIn, { isLoading, isSuccess, error }] = useSignInMutation();
+  const [signIn, { isLoading, isSuccess, error, isError }] =
+    useSignInMutation();
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<Inputs>();
 
   const handleOnSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
@@ -48,6 +50,10 @@ export default function LoginPage() {
     }
   }, [isSuccess, user, searchParams]);
 
+  useEffect(() => {
+    reset();
+  }, [isError, isSuccess]);
+
   return (
     <div className={styles.container}>
       <Link to="/">
@@ -62,6 +68,7 @@ export default function LoginPage() {
           type="error"
           title="There was a problem"
           text={(error as Error).data.message}
+          className={styles.alert}
         />
       )}
       <div className={styles.content}>
