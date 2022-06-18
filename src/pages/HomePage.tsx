@@ -1,4 +1,4 @@
-import { ProductList } from '../components/ProductList';
+import { ProductItem } from '../components/ProductItem';
 import { Slider } from '../components/Slider';
 import { useGetProductsQuery } from '../redux/services/productApi';
 
@@ -14,7 +14,11 @@ export default function HomePage() {
   ) : (
     <div className={styles.container}>
       <Slider />
-      <ProductList products={data} />
+      <div className={styles.productContainer}>
+        {data.map((product) => (
+          <ProductItem key={product._id} {...product} />
+        ))}
+      </div>
     </div>
   );
 }
