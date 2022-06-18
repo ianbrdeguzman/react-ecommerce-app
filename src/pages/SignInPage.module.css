@@ -1,0 +1,89 @@
+.container {
+  width: 100%;
+  margin: auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 2rem 1rem;
+  background-color: var(--lightgray);
+}
+
+.logo {
+  width: 6.25rem;
+}
+
+.content {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid var(--darkgray);
+  border-radius: 0.25rem;
+  background-color: #fff;
+}
+
+.title {
+  font-weight: 400;
+}
+
+.label {
+  display: block;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.input {
+  margin-top: 0.125rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #000;
+  border-radius: 0.125rem;
+  font-family: inherit;
+}
+
+.button,
+.link {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.25rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  border: 1px solid #000;
+  border-radius: 0.125rem;
+  background-color: var(--yellow);
+  cursor: pointer;
+}
+
+.footer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
+.link {
+  width: 100%;
+  margin-top: 0.5rem;
+  background-color: #fff;
+  border-color: var(--darkgray);
+}
+
+.link:hover {
+  background-color: var(--lightgray);
+}
+
+.error {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--red);
+}
+
+@media (min-width: 48rem) {
+  .content,
+  .footer,
+  .alert {
+    max-width: 21.75rem;
+  }
+}
