@@ -1,0 +1,30 @@
+.container {
+  min-height: 100vh;
+  padding: 1rem;
+  border: 1px solid red;
+}
+
+.title {
+  font-weight: 400;
+  margin-bottom: 1rem;
+  margin: 0 auto;
+  max-width: 33.75rem;
+}
+
+.content {
+  border: 1px solid red;
+}
+
+@media (min-width: 48rem) {
+  .content {
+    margin: 0 auto;
+    max-width: 33.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .details {
+    flex: 1;
+  }
+}

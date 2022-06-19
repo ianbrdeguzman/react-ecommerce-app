@@ -11,6 +11,7 @@ import ProfilePage from './pages/ProfilePage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentSelectionPage from './pages/PaymentSelectionPage';
 import OrderPage from './pages/OrderPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="/shipping" element={<ShippingPage />} />
           <Route path="/payment" element={<PaymentSelectionPage />} />
+          <Route path="/place-order" element={<PlaceOrderPage />} />
         </Route>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
