@@ -7,10 +7,10 @@ import styles from './OrderDetails.module.css';
 interface Props {
   shippingDetails: ShippingDetails;
   user: User;
-  isDelivered: boolean;
+  isDelivered?: boolean;
   deliveredAt?: string;
-  isPaid: boolean;
-  paidAt: string;
+  isPaid?: boolean;
+  paidAt?: string;
   paymentMethod: string;
 }
 
@@ -23,7 +23,6 @@ export function OrderDetails({
   paidAt,
   paymentMethod
 }: Props) {
-  console.log();
   return (
     <div className={styles.container}>
       <div className={styles.addressContainer}>
@@ -46,28 +45,32 @@ export function OrderDetails({
         <p className={styles.detail}>
           <b>Telephone:</b> {shippingDetails.phone}
         </p>
-        <p
-          className={cn(styles.status, {
-            [styles.positive]: isDelivered,
-            [styles.negative]: !isDelivered
-          })}
-        >
-          {isDelivered ? deliveredAt : 'Not Delivered'}
-        </p>
+        {isDelivered && deliveredAt && (
+          <p
+            className={cn(styles.status, {
+              [styles.positive]: isDelivered,
+              [styles.negative]: !isDelivered
+            })}
+          >
+            {isDelivered ? deliveredAt : 'Not Delivered'}
+          </p>
+        )}
       </div>
       <div className={styles.paymentContainer}>
         <h3 className={styles.title}>Payment</h3>
         <p className={styles.detail}>
           <b>Method:</b> {paymentMethod}
         </p>
-        <p
-          className={cn(styles.status, {
-            [styles.positive]: isPaid,
-            [styles.negative]: !isPaid
-          })}
-        >
-          {isPaid ? formatDate(paidAt) : 'Not Paid'}
-        </p>
+        {isPaid && paidAt && (
+          <p
+            className={cn(styles.status, {
+              [styles.positive]: isPaid,
+              [styles.negative]: !isPaid
+            })}
+          >
+            {isPaid ? formatDate(paidAt) : 'Not Paid'}
+          </p>
+        )}
       </div>
     </div>
   );
