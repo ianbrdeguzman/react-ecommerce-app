@@ -1,15 +1,17 @@
+import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Ad } from '../components/Ad';
 import { CheckoutSteps } from '../components/CheckoutSteps';
 import { cartSlice, PaymentMethod } from '../redux/features/cartSlice';
-import { useAppDispatch } from '../redux/hooks';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
 import styles from './PaymentSelectionPage.module.css';
 
 export default function PaymentSelectionPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { shippingDetails } = useAppSelector((state) => state.cartSlice);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       method: PaymentMethod.paypal
@@ -21,10 +23,11 @@ export default function PaymentSelectionPage() {
     navigate('/place-order');
   };
 
-  /**
-   * TODO: Check if cart is not empty
-   * add shipping details are provided
-   */
+  useEffect(() => {
+    if (!shippingDetails) {
+      navigate('/shipping');
+    }
+  }, [shippingDetails]);
 
   return (
     <div className={styles.container}>
@@ -37,7 +40,7 @@ export default function PaymentSelectionPage() {
             type="radio"
             {...register('method')}
             id="paypal"
-            value="paypal"
+            value={PaymentMethod.paypal}
             className={styles.radio}
           />
           <img
@@ -51,7 +54,7 @@ export default function PaymentSelectionPage() {
             type="radio"
             {...register('method')}
             id="stripe"
-            value="stripe"
+            value={PaymentMethod.stripe}
             className={styles.radio}
           />
           <img
