@@ -3,13 +3,17 @@ import { useAppDispatch } from '../redux/hooks';
 
 import styles from './CartItem.module.css';
 
-interface Props {
-  item: ProductWithQty;
-}
-
 export function CartItem({
-  item: { _id, image, title, price, stock, qty }
-}: Props) {
+  _id,
+  image,
+  title,
+  price,
+  stock,
+  qty
+}: Pick<
+  ProductWithQty,
+  '_id' | 'image' | 'title' | 'price' | 'stock' | 'qty'
+>) {
   const dispatch = useAppDispatch();
 
   return (
