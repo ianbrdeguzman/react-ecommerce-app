@@ -13,16 +13,12 @@ export interface ProductWithQty extends Product {
 
 interface State {
   cartItems: ProductWithQty[];
-  cartItemsLength: number;
-  cartItemsPrice: number;
   shippingDetails: ShippingDetails | null;
   paymentMethod: PaymentMethod;
 }
 
 const initialState: State = {
   cartItems: [],
-  cartItemsLength: 0,
-  cartItemsPrice: 0,
   shippingDetails: null,
   paymentMethod: PaymentMethod.paypal
 };
@@ -43,8 +39,6 @@ export const cartSlice = createSlice({
       } else {
         state.cartItems = [...state.cartItems, action.payload];
       }
-      cartSlice.caseReducers.cartLength(state, action);
-      cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(state.cartItems));
     },
     removeCartItem: (state, action: PayloadAction<string>) => {
@@ -56,8 +50,6 @@ export const cartSlice = createSlice({
         (item) => item._id !== action.payload
       );
       state.cartItems = localCartItems;
-      cartSlice.caseReducers.cartLength(state, action);
-      cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(localCartItems));
     },
     updateCartItem: (
@@ -71,8 +63,6 @@ export const cartSlice = createSlice({
         return item;
       });
       state.cartItems = updatedCartItems;
-      cartSlice.caseReducers.cartLength(state, action);
-      cartSlice.caseReducers.cartPrice(state, action);
       Storage.save('cartItems', JSON.stringify(updatedCartItems));
     },
     loadCartItems: (state, action) => {
@@ -86,8 +76,6 @@ export const cartSlice = createSlice({
             state.cartItems = parseCartItems;
           }
         }
-        cartSlice.caseReducers.cartLength(state, action);
-        cartSlice.caseReducers.cartPrice(state, action);
       }
     },
     loadShippingDetails: (state, action: PayloadAction<void>) => {
@@ -100,16 +88,6 @@ export const cartSlice = createSlice({
           state.shippingDetails = parseShippingDetails;
         }
       }
-    },
-    cartLength: (state, action) => {
-      state.cartItemsLength = state.cartItems.reduce((prev, curr) => {
-        return prev + curr.qty;
-      }, 0);
-    },
-    cartPrice: (state, action) => {
-      state.cartItemsPrice = state.cartItems.reduce((prev, curr) => {
-        return prev + curr.qty * curr.price;
-      }, 0);
     },
     addShippingDetails: (state, action: PayloadAction<ShippingDetails>) => {
       state.shippingDetails = action.payload;

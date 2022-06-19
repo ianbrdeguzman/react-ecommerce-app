@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { cartSlice } from '../redux/features/cartSlice';
 import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useCart } from '../redux/hooks/useCart';
 import { User } from '../redux/types';
 import { Storage } from '../utils/storage';
 
 import styles from './Header.module.css';
 
 export function Header() {
+  const { cartLength } = useCart();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.userSlice);
-  const { cartItems, cartItemsLength } = useAppSelector(
-    (state) => state.cartSlice
-  );
+  const { cartItems } = useAppSelector((state) => state.cartSlice);
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,7 +72,7 @@ export function Header() {
         </Link>
         <Link to="/cart" className={styles.cart}>
           <AiOutlineShoppingCart size={24} />
-          <span className={styles.count}>{cartItemsLength}</span>
+          <span className={styles.count}>{cartLength}</span>
         </Link>
       </div>
     </header>
