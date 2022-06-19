@@ -11,7 +11,7 @@ import { Storage } from '../utils/storage';
 import styles from './Header.module.css';
 
 export function Header() {
-  const [_, cartLength] = useCart();
+  const { cartLength } = useCart();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.userSlice);
   const { cartItems } = useAppSelector((state) => state.cartSlice);

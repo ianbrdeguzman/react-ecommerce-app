@@ -13,7 +13,7 @@ import { useGetProductByIdQuery } from '../redux/services/productApi';
 import styles from './CartPage.module.css';
 
 export default function CartPage() {
-  const [totalPrice, totalLength] = useCart();
+  const { cartPrice, cartLength } = useCart();
   const dispatch = useAppDispatch();
   const { id, qty } = useParams();
   const { data } = useGetProductByIdQuery(id ?? skipToken);
@@ -51,7 +51,7 @@ export default function CartPage() {
               ))}
             </ul>
           </div>
-          <CartAside cartPrice={totalPrice} cartLength={totalLength} />
+          <CartAside cartPrice={cartPrice} cartLength={cartLength} />
         </div>
       )}
     </div>
