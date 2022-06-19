@@ -1,4 +1,5 @@
 import type { OrderItem } from '../redux/types';
+
 import styles from './OrderItems.module.css';
 
 interface Props {
@@ -10,9 +11,9 @@ export function OrderItems({ orderItems }: Props) {
     <div className={styles.container}>
       <h3 className={styles.title}>Order Items</h3>
       {orderItems.map((item) => (
-        <div className={styles.item}>
+        <div key={item._id} className={styles.item}>
           <img src={item.image} alt={item.title} className={styles.image} />
-          <div>
+          <div className={styles.itemDetails}>
             <p>{item.title}</p>
             <p>
               {item.quantity} x ${item.price}
