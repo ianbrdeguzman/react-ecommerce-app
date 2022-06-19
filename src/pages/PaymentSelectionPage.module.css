@@ -1,5 +1,6 @@
 .container {
-  max-width: 90vw;
+  width: 100%;
+  padding: 1rem;
   margin: 0 auto;
 }
 
@@ -8,13 +9,16 @@
   border-radius: 0.25rem;
 }
 
+.header {
+  padding: unset;
+}
+
 .title {
-  padding: 1rem;
   font-weight: 400;
+  margin: 1rem 0;
 }
 
 .form {
-  padding: 1rem;
   display: flex;
   flex-direction: column;
 }
@@ -44,6 +48,9 @@
 }
 
 @media (min-width: 48rem) {
+  .container {
+    max-width: 33.75rem;
+  }
   .header {
     max-width: 90vw;
   }

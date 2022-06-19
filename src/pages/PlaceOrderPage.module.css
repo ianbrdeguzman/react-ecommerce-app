@@ -1,0 +1,40 @@
+.container {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.header {
+  padding: unset;
+}
+
+.title {
+  font-weight: 400;
+  margin: 1rem auto;
+}
+
+.detailsContainer {
+  width: 100%;
+}
+
+.detailTitle {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .content {
+    margin: 0 auto;
+    max-width: 62.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .title {
+    max-width: 62.5rem;
+  }
+
+  .detailsContainer {
+    margin-right: 1rem;
+  }
+}

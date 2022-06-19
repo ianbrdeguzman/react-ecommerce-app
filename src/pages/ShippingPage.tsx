@@ -11,7 +11,9 @@ import styles from './ShippingPage.module.css';
 export default function ShippingPage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { shippingDetails } = useAppSelector((state) => state.cartSlice);
+  const { shippingDetails, cartItems } = useAppSelector(
+    (state) => state.cartSlice
+  );
   const { register, handleSubmit, reset } = useForm<ShippingDetails>({
     defaultValues: {
       fullname: shippingDetails?.fullname,
@@ -41,11 +43,14 @@ export default function ShippingPage() {
 
   useEffect(() => {
     dispatch(cartSlice.actions.loadShippingDetails());
+    if (cartItems.length === 0) {
+      navigate('/');
+    }
   }, []);
 
   return (
     <div className={styles.container}>
-      <CheckoutSteps step={1} />
+      <CheckoutSteps step={2} className={styles.header} />
       <div className={styles.content}>
         <h1 className={styles.title}>Select a shipping address</h1>
         <form onSubmit={handleSubmit(handleOnSubmit)}>

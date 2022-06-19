@@ -3,12 +3,12 @@ import { Storage } from '../../utils/storage';
 import { Product, ShippingDetails } from '../types';
 
 export enum PaymentMethod {
-  paypal = 'paypal',
-  stripe = 'stripe'
+  paypal = 'PayPal',
+  stripe = 'Stripe'
 }
 
 export interface ProductWithQty extends Product {
-  qty: number;
+  quantity: number;
 }
 
 interface State {
@@ -58,7 +58,7 @@ export const cartSlice = createSlice({
     ) => {
       const updatedCartItems = state.cartItems.map((item) => {
         if (item._id === action.payload.id) {
-          item.qty = action.payload.qty;
+          item.quantity = action.payload.qty;
         }
         return item;
       });

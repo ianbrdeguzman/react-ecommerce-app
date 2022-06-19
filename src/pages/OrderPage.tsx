@@ -34,8 +34,8 @@ export default function OrderPage() {
           <OrderItems orderItems={data.orderItems} />
         </div>
         <OrderSummary
-          totalNumOfItems={data.orderItems.length}
-          itemPrice={data.itemPrice}
+          cartLength={data.orderItems.length}
+          cartPrice={data.itemPrice}
           shippingPrice={data.shippingPrice}
           taxPrice={data.taxPrice}
           totalPrice={data.totalPrice}
