@@ -9,10 +9,10 @@ export function CartItem({
   title,
   price,
   stock,
-  qty
+  quantity
 }: Pick<
   ProductWithQty,
-  '_id' | 'image' | 'title' | 'price' | 'stock' | 'qty'
+  '_id' | 'image' | 'title' | 'price' | 'stock' | 'quantity'
 >) {
   const dispatch = useAppDispatch();
 
@@ -31,7 +31,7 @@ export function CartItem({
             name="qty"
             id="qty"
             className={styles.select}
-            defaultValue={qty}
+            defaultValue={quantity}
             onChange={(e) =>
               dispatch(
                 cartSlice.actions.updateCartItem({

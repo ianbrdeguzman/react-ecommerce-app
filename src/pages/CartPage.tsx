@@ -21,7 +21,7 @@ export default function CartPage() {
 
   useEffect(() => {
     if (data && qty) {
-      dispatch(cartSlice.actions.addCartItem({ ...data, qty: +qty }));
+      dispatch(cartSlice.actions.addCartItem({ ...data, quantity: +qty }));
     }
   }, [data]);
 
@@ -38,17 +38,19 @@ export default function CartPage() {
               <p className={styles.cartSubTitle}>Price</p>
             </div>
             <ul className={styles.cartItemContainer}>
-              {cartItems.map(({ _id, image, title, price, stock, qty }) => (
-                <CartItem
-                  key={_id}
-                  _id={_id}
-                  image={image}
-                  title={title}
-                  price={price}
-                  stock={stock}
-                  qty={qty}
-                />
-              ))}
+              {cartItems.map(
+                ({ _id, image, title, price, stock, quantity }) => (
+                  <CartItem
+                    key={_id}
+                    _id={_id}
+                    image={image}
+                    title={title}
+                    price={price}
+                    stock={stock}
+                    quantity={quantity}
+                  />
+                )
+              )}
             </ul>
           </div>
           <CartAside cartPrice={cartPrice} cartLength={cartLength} />
