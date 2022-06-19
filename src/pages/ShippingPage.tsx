@@ -43,9 +43,13 @@ export default function ShippingPage() {
     dispatch(cartSlice.actions.loadShippingDetails());
   }, []);
 
+  /**
+   * TODO: Check if cart is not empty
+   */
+
   return (
     <div className={styles.container}>
-      <CheckoutSteps step={1} />
+      <CheckoutSteps step={2} />
       <div className={styles.content}>
         <h1 className={styles.title}>Select a shipping address</h1>
         <form onSubmit={handleSubmit(handleOnSubmit)}>

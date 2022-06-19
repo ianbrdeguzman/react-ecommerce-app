@@ -21,9 +21,14 @@ export default function PaymentSelectionPage() {
     navigate('/place-order');
   };
 
+  /**
+   * TODO: Check if cart is not empty
+   * add shipping details are provided
+   */
+
   return (
     <div className={styles.container}>
-      <CheckoutSteps step={2} className={styles.header} />
+      <CheckoutSteps step={3} className={styles.header} />
       <h1 className={styles.title}>Select payment method</h1>
       <Ad className={styles.ad} />
       <form className={styles.form} onSubmit={handleSubmit(handleOnSubmit)}>
