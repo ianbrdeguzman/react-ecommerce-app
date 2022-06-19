@@ -12,8 +12,10 @@ import ShippingPage from './pages/ShippingPage';
 import PaymentSelectionPage from './pages/PaymentSelectionPage';
 import OrderPage from './pages/OrderPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import { useInitialize } from './hooks/useInitialize';
 
 export default function App() {
+  useInitialize();
   return (
     <BrowserRouter>
       <Routes>

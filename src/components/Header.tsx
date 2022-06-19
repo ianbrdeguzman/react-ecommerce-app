@@ -1,36 +1,18 @@
-import { useEffect } from 'react';
 import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { cartSlice } from '../redux/features/cartSlice';
-import { userSlice } from '../redux/features/userSlice';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
-import { User } from '../redux/types';
-import { Storage } from '../utils/storage';
 
 import styles from './Header.module.css';
 
 export function Header() {
   const { cartLength } = useCart();
-  const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.userSlice);
-  const { cartItems } = useAppSelector((state) => state.cartSlice);
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Not yet implemented');
   };
-
-  useEffect(() => {
-    if (!user) {
-      const rawUser = Storage.load('user');
-      const user: User = rawUser ? JSON.parse(rawUser) : null;
-      if (user) {
-        dispatch(userSlice.actions.login(user));
-      }
-    }
-    dispatch(cartSlice.actions.loadCartItems([]));
-  }, [user, cartItems]);
 
   return (
     <header className={styles.container}>
