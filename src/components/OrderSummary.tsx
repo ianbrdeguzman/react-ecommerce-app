@@ -1,16 +1,16 @@
 import styles from './OrderSummary.module.css';
 
 interface Props {
-  totalNumOfItems: number;
-  itemPrice: number;
+  cartLength: number;
+  cartPrice: number;
   shippingPrice: number;
   taxPrice: number;
   totalPrice: number;
 }
 
 export function OrderSummary({
-  totalNumOfItems,
-  itemPrice,
+  cartLength,
+  cartPrice,
   shippingPrice,
   taxPrice,
   totalPrice
@@ -19,8 +19,8 @@ export function OrderSummary({
     <div className={styles.container}>
       <h3 className={styles.title}>Order Summary</h3>
       <div className={styles.detail}>
-        <p>Items ({totalNumOfItems}):</p>
-        <p>${itemPrice}</p>
+        <p>Items ({cartLength}):</p>
+        <p>${cartPrice}</p>
       </div>
       <div className={styles.detail}>
         <p>Shipping:</p>
