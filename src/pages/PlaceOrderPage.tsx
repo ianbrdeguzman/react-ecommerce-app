@@ -22,9 +22,6 @@ export default function PlaceOrderPage() {
     if (!shippingDetails) {
       navigate('/shipping');
     }
-    if (!user || !shippingDetails) {
-      console.log('hello');
-    }
   }, [shippingDetails]);
 
   const handleOnClick = () => {
