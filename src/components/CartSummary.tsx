@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 
-import styles from './CartAside.module.css';
+import styles from './CartSummary.module.css';
 
 interface Props {
   cartPrice: number;
   cartLength: number;
 }
 
-export function CartAside({ cartPrice, cartLength }: Props) {
+export function CartSummary({ cartPrice, cartLength }: Props) {
   return (
     <div className={styles.container}>
       <p className={styles.text}>
         {`Subtotal (${cartLength} items): `}
         <span>
-          <b>${cartPrice.toFixed(2)}</b>
+          <b>${cartPrice}</b>
         </span>
       </p>
       <Link to="/shipping">

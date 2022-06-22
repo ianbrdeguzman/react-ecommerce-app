@@ -6,6 +6,8 @@ interface Props {
   shippingPrice: number;
   taxPrice: number;
   totalPrice: number;
+  isPaid?: boolean;
+  onClick?: () => void;
 }
 
 export function OrderSummary({
@@ -13,7 +15,9 @@ export function OrderSummary({
   cartPrice,
   shippingPrice,
   taxPrice,
-  totalPrice
+  totalPrice,
+  isPaid,
+  onClick
 }: Props) {
   return (
     <div className={styles.container}>
@@ -34,6 +38,11 @@ export function OrderSummary({
         <p>Order Total:</p>
         <p>${totalPrice}</p>
       </div>
+      {!isPaid && (
+        <button onClick={onClick} className={styles.button}>
+          Place Order
+        </button>
+      )}
     </div>
   );
 }

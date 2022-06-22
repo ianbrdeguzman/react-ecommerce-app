@@ -11,7 +11,8 @@ import styles from './PlaceOrderPage.module.css';
 
 export default function PlaceOrderPage() {
   const navigate = useNavigate();
-  const { cartPrice, cartLength } = useCart();
+  const { cartPrice, cartLength, shippingPrice, taxPrice, totalPrice } =
+    useCart();
   const {
     cartSlice: { cartItems, shippingDetails, paymentMethod },
     userSlice: { user }
@@ -21,7 +22,22 @@ export default function PlaceOrderPage() {
     if (!shippingDetails) {
       navigate('/shipping');
     }
+    if (!user || !shippingDetails) {
+      console.log('hello');
+    }
   }, [shippingDetails]);
+
+  const handleOnClick = () => {
+    console.log({
+      orderItems: cartItems,
+      shippingDetails,
+      paymentMethod,
+      itemPrice: cartPrice,
+      shippingPrice,
+      taxPrice,
+      totalPrice
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -29,11 +45,13 @@ export default function PlaceOrderPage() {
       <h1 className={styles.title}>Review your order</h1>
       <div className={styles.content}>
         <div className={styles.detailsContainer}>
-          <OrderDetails
-            shippingDetails={shippingDetails!}
-            user={user!}
-            paymentMethod={paymentMethod}
-          />
+          {shippingDetails && user && (
+            <OrderDetails
+              shippingDetails={shippingDetails}
+              user={user}
+              paymentMethod={paymentMethod}
+            />
+          )}
           <OrderItems
             orderItems={cartItems.map((item) => ({
               _id: item._id,
@@ -48,9 +66,11 @@ export default function PlaceOrderPage() {
         <OrderSummary
           cartLength={cartLength}
           cartPrice={cartPrice}
-          shippingPrice={10}
-          taxPrice={10}
-          totalPrice={120}
+          shippingPrice={shippingPrice}
+          taxPrice={taxPrice}
+          totalPrice={totalPrice}
+          isPaid={false}
+          onClick={handleOnClick}
         />
       </div>
     </div>
