@@ -2,7 +2,7 @@ import { skipToken } from '@reduxjs/toolkit/dist/query';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Ad } from '../components/Ad';
-import { CartAside } from '../components/CartAside';
+import { CartSummary } from '../components/CartSummary';
 import { CartItem } from '../components/CartItem';
 import { EmptyCart } from '../components/EmptyCart';
 import { cartSlice } from '../redux/features/cartSlice';
@@ -13,8 +13,8 @@ import { useGetProductByIdQuery } from '../redux/services/productApi';
 import styles from './CartPage.module.css';
 
 export default function CartPage() {
-  const { cartPrice, cartLength } = useCart();
   const dispatch = useAppDispatch();
+  const { cartPrice, cartLength } = useCart();
   const { id, qty } = useParams();
   const { data } = useGetProductByIdQuery(id ?? skipToken);
   const { cartItems } = useAppSelector((state) => state.cartSlice);
@@ -53,7 +53,7 @@ export default function CartPage() {
               )}
             </ul>
           </div>
-          <CartAside cartPrice={cartPrice} cartLength={cartLength} />
+          <CartSummary cartPrice={cartPrice} cartLength={cartLength} />
         </div>
       )}
     </div>
