@@ -1,3 +1,4 @@
+import { Alert } from './Alert';
 import styles from './OrderSummary.module.css';
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
   totalPrice: number;
   isPaid?: boolean;
   onClick?: () => void;
+  isLoading?: boolean;
+  isError?: boolean;
 }
 
 export function OrderSummary({
@@ -17,7 +20,9 @@ export function OrderSummary({
   taxPrice,
   totalPrice,
   isPaid,
-  onClick
+  onClick,
+  isLoading,
+  isError
 }: Props) {
   return (
     <div className={styles.container}>
@@ -39,9 +44,18 @@ export function OrderSummary({
         <p>${totalPrice}</p>
       </div>
       {!isPaid && (
-        <button onClick={onClick} className={styles.button}>
-          Place Order
-        </button>
+        <>
+          {isError && (
+            <Alert type="error" title="Something went wrong." text=""></Alert>
+          )}
+          <button
+            disabled={isLoading || isError}
+            onClick={onClick}
+            className={styles.button}
+          >
+            {isLoading ? 'Loading...' : 'Place Order'}
+          </button>
+        </>
       )}
     </div>
   );
