@@ -45,30 +45,44 @@ export function OrderDetails({
         <p className={styles.detail}>
           <b>Telephone:</b> {shippingDetails.phone}
         </p>
-        {isDelivered && deliveredAt && (
+        {isDelivered && deliveredAt ? (
           <p
             className={cn(styles.status, {
-              [styles.positive]: isDelivered,
+              [styles.positive]: isDelivered
+            })}
+          >
+            {formatDate(deliveredAt)}
+          </p>
+        ) : (
+          <p
+            className={cn(styles.status, {
               [styles.negative]: !isDelivered
             })}
           >
-            {isDelivered ? deliveredAt : 'Not Delivered'}
+            Not Delivered
           </p>
         )}
       </div>
       <div className={styles.paymentContainer}>
         <h3 className={styles.title}>Payment</h3>
-        <p className={styles.detail}>
+        <p className={styles.payment}>
           <b>Method:</b> {paymentMethod}
         </p>
-        {isPaid && paidAt && (
+        {isPaid && paidAt ? (
           <p
             className={cn(styles.status, {
-              [styles.positive]: isPaid,
+              [styles.positive]: isPaid
+            })}
+          >
+            {formatDate(paidAt)}
+          </p>
+        ) : (
+          <p
+            className={cn(styles.status, {
               [styles.negative]: !isPaid
             })}
           >
-            {isPaid ? formatDate(paidAt) : 'Not Paid'}
+            Not Paid
           </p>
         )}
       </div>
