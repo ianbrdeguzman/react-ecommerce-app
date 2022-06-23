@@ -21,9 +21,14 @@
   margin-bottom: 1rem;
 }
 
-.detail {
+.detail,
+.payment {
   font-size: 0.875rem;
   line-height: 20px;
+}
+
+.payment {
+  flex: 1;
 }
 
 .status {
@@ -42,4 +47,25 @@
 .status.negative {
   color: var(--red);
   background-color: var(--lightred);
+}
+
+@media (min-width: 48rem) {
+  .container {
+    flex-direction: row;
+  }
+
+  .paymentContainer {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
+  .status {
+    width: fit-content;
+  }
+
+  .status:last-child {
+    justify-self: end;
+  }
 }
