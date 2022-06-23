@@ -18,7 +18,7 @@ export interface User {
   token: string;
 }
 
-interface OrderItem {
+export interface OrderItem {
   _id: string;
   title: string;
   quantity: number;
@@ -27,7 +27,7 @@ interface OrderItem {
   productId: string;
 }
 
-interface ShippingDetails {
+export interface ShippingDetails {
   fullname: string;
   addressOne: string;
   addressTwo: string;
@@ -59,4 +59,21 @@ export interface Order {
   paidAt: string;
   isDelivered: boolean;
   deliveredAt: string;
+}
+
+export interface OrderArg {
+  orderItems: Array<
+    Pick<OrderItem, 'image' | 'price' | 'productId' | 'quantity' | 'title'>
+  >;
+  shippingDetails: ShippingDetails;
+  paymentMethod: string;
+  itemPrice: number;
+  shippingPrice: number;
+  taxPrice: number;
+  totalPrice: number;
+}
+
+export interface OrderResponse {
+  message: string;
+  order: Order;
 }
