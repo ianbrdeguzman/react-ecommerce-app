@@ -29,7 +29,7 @@ export default function OrderPage() {
             deliveredAt={data.deliveredAt}
             isPaid={data.isPaid}
             paidAt={data.paidAt}
-            paymentMethod={data!.paymentMethod}
+            paymentMethod={data.paymentMethod}
           />
           <OrderItems orderItems={data.orderItems} />
         </div>
@@ -39,6 +39,7 @@ export default function OrderPage() {
           shippingPrice={data.shippingPrice}
           taxPrice={data.taxPrice}
           totalPrice={data.totalPrice}
+          isPaid={data.isPaid}
         />
       </div>
     </div>
