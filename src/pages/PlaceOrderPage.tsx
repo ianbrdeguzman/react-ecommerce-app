@@ -6,6 +6,7 @@ import { OrderItems } from '../components/OrderItems';
 import { OrderSummary } from '../components/OrderSummary';
 import { useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
+import { useCreateOrderMutation } from '../redux/services/orderApi';
 
 import styles from './PlaceOrderPage.module.css';
 
@@ -17,6 +18,7 @@ export default function PlaceOrderPage() {
     cartSlice: { cartItems, shippingDetails, paymentMethod },
     userSlice: { user }
   } = useAppSelector((state) => state);
+  const [createOrder, { isLoading, isError, data }] = useCreateOrderMutation();
 
   useEffect(() => {
     if (!shippingDetails) {
@@ -24,17 +26,32 @@ export default function PlaceOrderPage() {
     }
   }, [shippingDetails]);
 
-  const handleOnClick = () => {
-    console.log({
-      orderItems: cartItems,
-      shippingDetails,
-      paymentMethod,
-      itemPrice: cartPrice,
-      shippingPrice,
-      taxPrice,
-      totalPrice
-    });
+  const handleOnClick = async () => {
+    const orderItems = cartItems.map((item) => ({
+      title: item.title,
+      quantity: item.quantity,
+      image: item.image,
+      price: item.price,
+      productId: item._id
+    }));
+    if (shippingDetails && user) {
+      createOrder({
+        orderItems: orderItems,
+        shippingDetails,
+        paymentMethod,
+        itemPrice: cartPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice
+      });
+    }
   };
+
+  useEffect(() => {
+    if (data) {
+      navigate(`/order/${data.order._id}`);
+    }
+  }, [data]);
 
   return (
     <div className={styles.container}>
@@ -68,6 +85,8 @@ export default function PlaceOrderPage() {
           totalPrice={totalPrice}
           isPaid={false}
           onClick={handleOnClick}
+          isLoading={isLoading}
+          isError={isError}
         />
       </div>
     </div>

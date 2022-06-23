@@ -1,5 +1,5 @@
 .container {
-  max-width: 8.75rem;
+  width: 8.75rem;
   color: #000;
   padding: 0.5rem;
   background-color: #fff;
@@ -23,6 +23,6 @@
 
 @media (min-width: 48rem) {
   .container {
-    max-width: 12.5rem;
+    width: 12.5rem;
   }
 }

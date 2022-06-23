@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { Order } from '../types';
+import { Order, OrderResponse, OrderArg } from '../types';
 
 export const orderApi = createApi({
   reducerPath: 'orderApi',
@@ -30,8 +30,21 @@ export const orderApi = createApi({
           method: 'GET'
         };
       }
+    }),
+    createOrder: builder.mutation<OrderResponse, OrderArg>({
+      query: (body) => {
+        return {
+          url: '/api/order',
+          method: 'POST',
+          body
+        };
+      }
     })
   })
 });
 
-export const { useGetOrdersQuery, useGetOrderByIdQuery } = orderApi;
+export const {
+  useGetOrdersQuery,
+  useGetOrderByIdQuery,
+  useCreateOrderMutation
+} = orderApi;
