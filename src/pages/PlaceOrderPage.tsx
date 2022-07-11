@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CheckoutSteps } from '../components/CheckoutSteps';
 import { OrderDetails } from '../components/OrderDetails';
 import { OrderItems } from '../components/OrderItems';
-import { OrderSummary } from '../components/OrderSummary';
+import { PlaceOrderSummary } from '../components/PlaceOrderSummary';
 import { useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
 import { useCreateOrderMutation } from '../redux/services/orderApi';
@@ -77,7 +77,7 @@ export default function PlaceOrderPage() {
             }))}
           />
         </div>
-        <OrderSummary
+        <PlaceOrderSummary
           cartLength={cartLength}
           cartPrice={cartPrice}
           shippingPrice={shippingPrice}

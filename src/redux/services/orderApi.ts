@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { Order, OrderResponse, OrderArg } from '../types';
+import { Order, OrderResponse, OrderArg, PaymentResult } from '../types';
 
 export const orderApi = createApi({
   reducerPath: 'orderApi',
@@ -14,6 +14,7 @@ export const orderApi = createApi({
       return headers;
     }
   }),
+  tagTypes: ['OrderId'],
   endpoints: (builder) => ({
     getOrders: builder.query<Order[], void>({
       query: () => {
@@ -29,7 +30,8 @@ export const orderApi = createApi({
           url: `/api/order/${id}`,
           method: 'GET'
         };
-      }
+      },
+      providesTags: ['OrderId']
     }),
     createOrder: builder.mutation<OrderResponse, OrderArg>({
       query: (body) => {
@@ -39,6 +41,19 @@ export const orderApi = createApi({
           body
         };
       }
+    }),
+    payOrderById: builder.mutation<
+      Order,
+      { id: string; paymentResult: PaymentResult }
+    >({
+      query: ({ id, paymentResult }) => {
+        return {
+          url: `/api/order/${id}/pay`,
+          method: 'PUT',
+          body: paymentResult
+        };
+      },
+      invalidatesTags: ['OrderId']
     })
   })
 });
@@ -46,5 +61,6 @@ export const orderApi = createApi({
 export const {
   useGetOrdersQuery,
   useGetOrderByIdQuery,
-  useCreateOrderMutation
+  useCreateOrderMutation,
+  usePayOrderByIdMutation
 } = orderApi;

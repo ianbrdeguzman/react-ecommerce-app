@@ -3,17 +3,42 @@ import { useParams } from 'react-router-dom';
 import { OrderDetails } from '../components/OrderDetails';
 import { OrderItems } from '../components/OrderItems';
 import { OrderSummary } from '../components/OrderSummary';
-import { useGetOrderByIdQuery } from '../redux/services/orderApi';
+import { OnApproveData } from '@paypal/paypal-js';
+import { useAppSelector } from '../redux/hooks';
+import {
+  useGetOrderByIdQuery,
+  usePayOrderByIdMutation
+} from '../redux/services/orderApi';
 
 import styles from './OrderPage.module.css';
 
 export default function OrderPage() {
   const { id } = useParams();
-  const { data, isError, isLoading } = useGetOrderByIdQuery(id ?? skipToken);
+  const { user } = useAppSelector((state) => state.userSlice);
+  const {
+    data: order,
+    isError: orderError,
+    isLoading: orderLoading
+  } = useGetOrderByIdQuery(id ?? skipToken);
+  const [payOrderById, { isError: payOrderError }] = usePayOrderByIdMutation();
 
-  return isLoading ? (
+  const handleOnClick = async (onApproveData: OnApproveData) => {
+    if (order && user) {
+      await payOrderById({
+        id: order._id,
+        paymentResult: {
+          id: onApproveData.orderID,
+          status: 'COMPLETED',
+          update_time: new Date().toString(),
+          email_address: user.email
+        }
+      });
+    }
+  };
+
+  return orderLoading ? (
     <h1 className={styles.loading}>Loading...</h1>
-  ) : isError || !data ? (
+  ) : orderError || !order ? (
     <h1 className={styles.error}>Something went wrong.</h1>
   ) : (
     <div className={styles.container}>
@@ -23,23 +48,25 @@ export default function OrderPage() {
       <div className={styles.content}>
         <div className={styles.orderContainer}>
           <OrderDetails
-            shippingDetails={data.shippingDetails}
-            user={data.user}
-            isDelivered={data.isDelivered}
-            deliveredAt={data.deliveredAt}
-            isPaid={data.isPaid}
-            paidAt={data.paidAt}
-            paymentMethod={data.paymentMethod}
+            shippingDetails={order.shippingDetails}
+            user={order.user}
+            isDelivered={order.isDelivered}
+            deliveredAt={order.deliveredAt}
+            isPaid={order.isPaid}
+            paidAt={order.paidAt}
+            paymentMethod={order.paymentMethod}
           />
-          <OrderItems orderItems={data.orderItems} />
+          <OrderItems orderItems={order.orderItems} />
         </div>
         <OrderSummary
-          cartLength={data.orderItems.length}
-          cartPrice={data.itemPrice}
-          shippingPrice={data.shippingPrice}
-          taxPrice={data.taxPrice}
-          totalPrice={data.totalPrice}
-          isPaid={data.isPaid}
+          cartLength={order.orderItems.length}
+          cartPrice={order.itemPrice}
+          shippingPrice={order.shippingPrice}
+          taxPrice={order.taxPrice}
+          totalPrice={order.totalPrice}
+          isPaid={order.isPaid}
+          onClick={handleOnClick}
+          isError={payOrderError}
         />
       </div>
     </div>
