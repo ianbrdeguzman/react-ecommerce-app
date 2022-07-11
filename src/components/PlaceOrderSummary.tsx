@@ -1,7 +1,5 @@
-import { OnApproveData } from '@paypal/paypal-js';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 import { Alert } from './Alert';
-import styles from './OrderSummary.module.css';
+import styles from './PlaceOrderSummary.module.css';
 
 interface Props {
   cartLength: number;
@@ -10,11 +8,12 @@ interface Props {
   taxPrice: number;
   totalPrice: number;
   isPaid?: boolean;
-  onClick: (onApproveData: OnApproveData) => void;
+  onClick?: () => void;
+  isLoading?: boolean;
   isError?: boolean;
 }
 
-export function OrderSummary({
+export function PlaceOrderSummary({
   cartLength,
   cartPrice,
   shippingPrice,
@@ -22,6 +21,7 @@ export function OrderSummary({
   totalPrice,
   isPaid,
   onClick,
+  isLoading,
   isError
 }: Props) {
   return (
@@ -47,24 +47,13 @@ export function OrderSummary({
         <Alert type="error" title="Something went wrong." text=""></Alert>
       )}
       {!isPaid && (
-        <PayPalButtons
-          createOrder={(data, actions) => {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  amount: {
-                    currency_code: 'USD',
-                    value: totalPrice.toString()
-                  }
-                }
-              ]
-            });
-          }}
-          onApprove={(data, actions) => {
-            return actions.order!.capture().then(() => data && onClick(data));
-          }}
+        <button
+          disabled={isLoading || isError}
+          onClick={onClick}
           className={styles.button}
-        />
+        >
+          {isLoading ? 'Loading...' : 'Place Order'}
+        </button>
       )}
     </div>
   );
