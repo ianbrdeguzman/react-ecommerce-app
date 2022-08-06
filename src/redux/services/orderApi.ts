@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { Order, OrderResponse, OrderArg, PaymentResult } from '../types';
+import { Order, OrderResponse, OrderArg, PaymentResult, User } from '../types';
 
 export const orderApi = createApi({
   reducerPath: 'orderApi',
@@ -16,7 +16,7 @@ export const orderApi = createApi({
   }),
   tagTypes: ['OrderId'],
   endpoints: (builder) => ({
-    getOrders: builder.query<Order[], void>({
+    getOrders: builder.query<Order[], User>({
       query: () => {
         return {
           url: '/api/order/mine',

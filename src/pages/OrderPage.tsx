@@ -19,7 +19,7 @@ export default function OrderPage() {
     data: order,
     isError: orderError,
     isLoading: orderLoading
-  } = useGetOrderByIdQuery(id ?? skipToken);
+  } = useGetOrderByIdQuery(id && user ? id : null ?? skipToken);
   const [payOrderById, { isError: payOrderError }] = usePayOrderByIdMutation();
 
   const handleOnClick = async (onApproveData: OnApproveData) => {
