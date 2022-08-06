@@ -1,5 +1,7 @@
-import { format } from 'date-fns';
-
 export function formatDate(date: string) {
-  return format(new Date(date), 'MMM dd yyyy');
+  return new Intl.DateTimeFormat('us-en', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(new Date(date));
 }
