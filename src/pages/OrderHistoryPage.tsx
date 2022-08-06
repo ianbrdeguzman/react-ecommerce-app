@@ -1,10 +1,13 @@
+import { skipToken } from '@reduxjs/toolkit/query/react';
 import { OrderHistoryItem } from '../components/OrderHistoryItem';
+import { useAppSelector } from '../redux/hooks';
 import { useGetOrdersQuery } from '../redux/services/orderApi';
 
 import styles from './OrderHistoryPage.module.css';
 
 export default function OrderHistoryPage() {
-  const { data, isError, isLoading } = useGetOrdersQuery();
+  const { user } = useAppSelector((state) => state.userSlice);
+  const { data, isError, isLoading } = useGetOrdersQuery(user ?? skipToken);
 
   return isLoading ? (
     <h1 className={styles.loading}>Loading...</h1>
