@@ -5,6 +5,8 @@ import { Ad } from '../components/Ad';
 import { CheckoutSteps } from '../components/CheckoutSteps';
 import { cartSlice, PaymentMethod } from '../redux/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import paypal from '../assets/paypal-logo.png?url';
+import stripe from '../assets/stripe-logo.png?url';
 
 import styles from './PaymentSelectionPage.module.css';
 
@@ -43,11 +45,7 @@ export default function PaymentSelectionPage() {
             value={PaymentMethod.paypal}
             className={styles.radio}
           />
-          <img
-            src="../../src/assets/paypal-logo.png"
-            alt="PayPal"
-            className={styles.paypalLogo}
-          />
+          <img src={paypal} alt="PayPal" className={styles.paypalLogo} />
         </label>
         <label htmlFor="stripe" className={styles.label}>
           <input
@@ -57,11 +55,7 @@ export default function PaymentSelectionPage() {
             value={PaymentMethod.stripe}
             className={styles.radio}
           />
-          <img
-            src="../../src/assets/stripe-logo.png"
-            alt="Stripe"
-            className={styles.stripeLogo}
-          />
+          <img src={stripe} alt="Stripe" className={styles.stripeLogo} />
         </label>
         <button type="submit" className={styles.button}>
           Continue

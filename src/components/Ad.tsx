@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import image from '../assets/ad.png?url';
 
 import styles from './Ad.module.css';
 
@@ -9,7 +10,7 @@ interface Props {
 export function Ad({ className }: Props) {
   return (
     <div className={cn(styles.container, className)}>
-      <img src="../../src/assets/ad.png" alt="Ad" />
+      <img src={image} alt="Ad" />
       <div className={styles.textContainer}>
         <p className={styles.text}>
           You could get <span>5% back at Amazon.ca</span>, grocery stores and

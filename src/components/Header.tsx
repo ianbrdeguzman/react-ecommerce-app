@@ -2,7 +2,7 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
-import logo from '../../src/assets/amazon-logo.svg?url';
+import logo from '../assets/amazon-logo.svg?url';
 
 import styles from './Header.module.css';
 

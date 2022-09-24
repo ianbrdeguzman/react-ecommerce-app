@@ -5,6 +5,7 @@ import { userSlice } from '../redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useSignInMutation } from '../redux/services/userApi';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import logo from '../assets/amazon-logo.png?url';
 
 import styles from './SignInPage.module.css';
 
@@ -57,11 +58,7 @@ export default function SignInPage() {
   return (
     <div className={styles.container}>
       <Link to="/">
-        <img
-          src="./src/assets/amazon-logo.png"
-          alt="E-Commerce Logo"
-          className={styles.logo}
-        />
+        <img src={logo} alt="E-Commerce Logo" className={styles.logo} />
       </Link>
       {error && (
         <Alert

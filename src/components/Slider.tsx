@@ -1,8 +1,8 @@
 import { Carousel } from 'react-responsive-carousel';
-import sliderOne from '../../src/assets/slider-image-1.webp?url';
-import sliderTwo from '../../src/assets/slider-image-2.webp?url';
-import sliderThree from '../../src/assets/slider-image-3.webp?url';
-import sliderFour from '../../src/assets/slider-image-4.webp?url';
+import sliderOne from '../assets/slider-image-1.webp?url';
+import sliderTwo from '../assets/slider-image-2.webp?url';
+import sliderThree from '../assets/slider-image-3.webp?url';
+import sliderFour from '../assets/slider-image-4.webp?url';
 
 import styles from './Slider.module.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';

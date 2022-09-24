@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useSignupMutation } from '../redux/services/userApi';
 import { Alert } from '../components/Alert';
+import logo from '../assets/amazon-logo.png?url';
 
 import styles from './RegisterPage.module.css';
 
@@ -49,11 +50,7 @@ export default function RegisterPage() {
   return (
     <div className={styles.container}>
       <Link to="/">
-        <img
-          src="./src/assets/amazon-logo.png"
-          alt="E-Commerce Logo"
-          className={styles.logo}
-        />
+        <img src={logo} alt="E-Commerce Logo" className={styles.logo} />
       </Link>
       {isSuccess && (
         <Alert

@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
+import logo from '../assets/amazon-logo.png?url';
 
 import styles from './CheckoutSteps.module.css';
 
@@ -12,11 +13,7 @@ export function CheckoutSteps({ step, className }: Props) {
   return (
     <header className={cn(styles.container, className)}>
       <Link to="/">
-        <img
-          src="../../src/assets/amazon-logo.png"
-          alt="E-Commerce App Logo"
-          className={styles.logo}
-        />
+        <img src={logo} alt="E-Commerce App Logo" className={styles.logo} />
       </Link>
       <div className={styles.checkout}>
         <Link
