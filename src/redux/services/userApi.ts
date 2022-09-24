@@ -11,7 +11,7 @@ export const userApi = createApi({
     >({
       query: (body) => {
         return {
-          url: '/api/user/register',
+          url: '/v1/user/create',
           method: 'POST',
           body
         };
@@ -20,7 +20,7 @@ export const userApi = createApi({
     signIn: builder.mutation<User, { email: string; password: string }>({
       query: (body) => {
         return {
-          url: '/api/user/signin',
+          url: '/v1/user/signin',
           method: 'POST',
           body
         };
@@ -29,7 +29,7 @@ export const userApi = createApi({
     update: builder.mutation<
       User,
       {
-        userId: string;
+        _id: string;
         name: string;
         email: string;
         password: string;
@@ -38,7 +38,7 @@ export const userApi = createApi({
     >({
       query: (body) => {
         return {
-          url: '/api/user/profile',
+          url: '/v1/user/update',
           headers: {
             Authorization: `Bearer ${body.token}`
           },

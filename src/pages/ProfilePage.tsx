@@ -36,7 +36,7 @@ export default function ProfilePage() {
   }) => {
     if (user) {
       const data = await update({
-        userId: user._id,
+        _id: user._id,
         name: name ?? '',
         email: email ?? '',
         password: password ?? '',
