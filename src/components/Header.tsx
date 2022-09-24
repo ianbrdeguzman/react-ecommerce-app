@@ -2,6 +2,7 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
+import logo from '../../src/assets/amazon-logo.svg?url';
 
 import styles from './Header.module.css';
 
@@ -18,11 +19,7 @@ export function Header() {
     <header className={styles.container}>
       <div className={styles.content}>
         <Link to="/">
-          <img
-            src="../../src/assets/amazon-logo.svg"
-            alt="E-Commerce App Logo"
-            className={styles.logo}
-          />
+          <img src={logo} alt="E-Commerce App Logo" className={styles.logo} />
         </Link>
         <form className={styles.form} onSubmit={handleOnSubmit}>
           <input
