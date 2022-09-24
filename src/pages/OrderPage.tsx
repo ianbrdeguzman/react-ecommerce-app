@@ -15,6 +15,7 @@ import styles from './OrderPage.module.css';
 export default function OrderPage() {
   const { id } = useParams();
   const { user } = useAppSelector((state) => state.userSlice);
+
   const {
     data: order,
     isError: orderError,
@@ -27,6 +28,7 @@ export default function OrderPage() {
       await payOrderById({
         id: order._id,
         paymentResult: {
+          _id: user._id,
           id: onApproveData.orderID,
           status: 'COMPLETED',
           update_time: new Date().toString(),
@@ -49,7 +51,7 @@ export default function OrderPage() {
         <div className={styles.orderContainer}>
           <OrderDetails
             shippingDetails={order.shippingDetails}
-            user={order.user}
+            user={order.shippingDetails.fullname}
             isDelivered={order.isDelivered}
             deliveredAt={order.deliveredAt}
             isPaid={order.isPaid}

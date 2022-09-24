@@ -7,7 +7,9 @@ import styles from './OrderHistoryPage.module.css';
 
 export default function OrderHistoryPage() {
   const { user } = useAppSelector((state) => state.userSlice);
-  const { data, isError, isLoading } = useGetOrdersQuery(user ?? skipToken);
+  const { data, isError, isLoading } = useGetOrdersQuery(user ?? skipToken, {
+    refetchOnMountOrArgChange: true
+  });
 
   return isLoading ? (
     <h1 className={styles.loading}>Loading...</h1>

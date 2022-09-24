@@ -19,7 +19,7 @@ export const orderApi = createApi({
     getOrders: builder.query<Order[], User>({
       query: () => {
         return {
-          url: '/api/order/mine',
+          url: '/v1/order/mine',
           method: 'GET'
         };
       }
@@ -27,7 +27,7 @@ export const orderApi = createApi({
     getOrderById: builder.query<Order, string>({
       query: (id) => {
         return {
-          url: `/api/order/${id}`,
+          url: `/v1/order/${id}`,
           method: 'GET'
         };
       },
@@ -36,7 +36,7 @@ export const orderApi = createApi({
     createOrder: builder.mutation<OrderResponse, OrderArg>({
       query: (body) => {
         return {
-          url: '/api/order',
+          url: '/v1/order/create',
           method: 'POST',
           body
         };
@@ -48,7 +48,7 @@ export const orderApi = createApi({
     >({
       query: ({ id, paymentResult }) => {
         return {
-          url: `/api/order/${id}/pay`,
+          url: `/v1/order/${id}/pay`,
           method: 'PUT',
           body: paymentResult
         };

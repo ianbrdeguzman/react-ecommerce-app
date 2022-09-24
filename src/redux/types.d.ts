@@ -37,6 +37,7 @@ export interface ShippingDetails {
 }
 
 interface PaymentResult {
+  _id: string;
   id: string;
   status: string;
   update_time: string;
@@ -62,6 +63,7 @@ export interface Order {
 }
 
 export interface OrderArg {
+  _id: string;
   orderItems: Array<
     Pick<OrderItem, 'image' | 'price' | 'productId' | 'quantity' | 'title'>
   >;

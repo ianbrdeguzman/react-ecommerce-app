@@ -59,8 +59,8 @@ export function OrderHistoryItem({
         </section>
       </Link>
       <section className={styles.itemSection}>
-        {orderItems.map(({ _id, image, title, productId }) => (
-          <article key={_id} className={styles.item}>
+        {orderItems.map(({ image, title, productId }) => (
+          <article key={productId} className={styles.item}>
             <img src={image} alt={title} className={styles.itemImage} />
             <div className={styles.itemInfo}>
               <Link to={`/product/${productId}`}>

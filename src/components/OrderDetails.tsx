@@ -1,12 +1,12 @@
 import cn from 'classnames';
-import { ShippingDetails, User } from '../redux/types';
+import { ShippingDetails } from '../redux/types';
 import { formatDate } from '../utils/formatDate';
 
 import styles from './OrderDetails.module.css';
 
 interface Props {
   shippingDetails: ShippingDetails;
-  user: User;
+  user: string;
   isDelivered?: boolean;
   deliveredAt?: string;
   isPaid?: boolean;
@@ -28,7 +28,7 @@ export function OrderDetails({
       <div className={styles.addressContainer}>
         <h3 className={styles.title}>Shipping address</h3>
         <p className={styles.detail}>
-          <b>Fullname:</b> {user.name}
+          <b>Fullname:</b> {user}
         </p>
         <p className={styles.detail}>
           <b>Address Line 1:</b> {shippingDetails.addressOne}

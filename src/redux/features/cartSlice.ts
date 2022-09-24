@@ -78,6 +78,10 @@ export const cartSlice = createSlice({
         }
       }
     },
+    clearCartItems: (state, action: PayloadAction<void>) => {
+      state.cartItems = [];
+      Storage.remove('cartItems');
+    },
     loadShippingDetails: (state, action: PayloadAction<void>) => {
       const rawShippingDetails = Storage.load('shippingDetails');
       if (rawShippingDetails) {

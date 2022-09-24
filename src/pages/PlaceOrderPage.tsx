@@ -4,13 +4,15 @@ import { CheckoutSteps } from '../components/CheckoutSteps';
 import { OrderDetails } from '../components/OrderDetails';
 import { OrderItems } from '../components/OrderItems';
 import { PlaceOrderSummary } from '../components/PlaceOrderSummary';
-import { useAppSelector } from '../redux/hooks';
+import { cartSlice } from '../redux/features/cartSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { useCart } from '../redux/hooks/useCart';
 import { useCreateOrderMutation } from '../redux/services/orderApi';
 
 import styles from './PlaceOrderPage.module.css';
 
 export default function PlaceOrderPage() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { cartPrice, cartLength, shippingPrice, taxPrice, totalPrice } =
     useCart();
@@ -36,6 +38,7 @@ export default function PlaceOrderPage() {
     }));
     if (shippingDetails && user) {
       createOrder({
+        _id: user._id,
         orderItems: orderItems,
         shippingDetails,
         paymentMethod,
@@ -49,7 +52,8 @@ export default function PlaceOrderPage() {
 
   useEffect(() => {
     if (data) {
-      navigate(`/order/${data.order._id}`);
+      dispatch(cartSlice.actions.clearCartItems());
+      navigate(`/order/${data.order}`);
     }
   }, [data]);
 
@@ -62,7 +66,7 @@ export default function PlaceOrderPage() {
           {shippingDetails && user && (
             <OrderDetails
               shippingDetails={shippingDetails}
-              user={user}
+              user={shippingDetails.fullname}
               paymentMethod={paymentMethod}
             />
           )}
